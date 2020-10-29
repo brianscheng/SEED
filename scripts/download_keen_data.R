@@ -13,14 +13,17 @@ library(dplyr)
 data_files <- GET("https://api.github.com/repos/kelpecosystems/observational_data/contents/cleaned_data/")
 
 #what are the actual links
-download_links <- sapply(content(data_files), 
-       function(.x) .x$download_url)
+download_links <- c(
+  sapply(content(data_files), 
+       function(.x) .x$download_url),
+  "https://raw.githubusercontent.com/kelpecosystems/kelp_size_dist_change/master/data/kelp_quads_biomass.csv")
 
 #download the files
 download_keendata <- function(.x){
   outfile <- paste0("data/keen/",
                     gsub("https://raw.githubusercontent.com/kelpecosystems/observational_data/master/cleaned_data/", "", .x))
-  
+  outfile <- gsub("https://raw.githubusercontent.com/kelpecosystems/kelp_size_dist_change/master/data/", "", outfile)
+
   f <- read_csv(.x)
   
   f <- filter(f, grepl("Appledore", SITE))
