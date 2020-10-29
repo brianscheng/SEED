@@ -1,0 +1,154 @@
+NETWORK,PI,YEAR,MONTH,DAY,SITE,TRANSECT,SP_CODE,QUAD,SIDE,FISH.SIZE,COUNT,AREA,GROUP,DIVISION.FAMILY,COMMON.DIVISION.NAME,SIZE,COMMON.NAME,KINGDOM,PHYLUM,CLASS,ORDER,FAMILY,GENUS,SPECIES
+KEEN ONE,Byrnes,2014,7,19,NE Appledore,Broadway and 42nd,NO_FISH,NA,NA,YOY,0,80,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+KEEN ONE,Byrnes,2014,7,19,NE Appledore,Broadway and 42nd,NO_FISH,NA,NA,0-10,0,80,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+KEEN ONE,Byrnes,2014,7,21,NE Appledore,Devil's Dance Floor,TAAD,NA,NA,0-10,2,80,Fish,Chordates,Fish,NA,Cunner,Animalia,Chordata,Actinopterygii,Perciformes,Labridae,Tautogolabrus,Tautogolabrus adspersus
+KEEN ONE,Byrnes,2014,7,19,NE Appledore,Broadway and 42nd,NO_FISH,NA,NA,10-50,0,80,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+KEEN ONE,Byrnes,2014,7,18,NE Appledore,Broad Cove,POVI,NA,NA,10-50,86,80,Fish,Chordates,Fish,NA,Pollock,Animalia,Chordata,Actinopterygii,Gadiformes,Gadidae,Pollachius,Pollachius virens
+KEEN ONE,Byrnes,2014,7,21,NE Appledore,Devil's Dance Floor,POVI,NA,NA,10-50,38,80,Fish,Chordates,Fish,NA,Pollock,Animalia,Chordata,Actinopterygii,Gadiformes,Gadidae,Pollachius,Pollachius virens
+KEEN ONE,Byrnes,2014,7,18,NE Appledore,Norwegian Cove,POVI,NA,NA,10-50,24,80,Fish,Chordates,Fish,NA,Pollock,Animalia,Chordata,Actinopterygii,Gadiformes,Gadidae,Pollachius,Pollachius virens
+KEEN ONE,Byrnes,2014,7,19,NE Appledore,Broadway and 42nd,NO_FISH,NA,NA,50-100,0,80,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+KEEN ONE,Byrnes,2014,7,19,NE Appledore,Broadway and 42nd,NO_FISH,NA,NA,>100,0,80,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+KEEN ONE,Byrnes,2014,7,18,NW Appledore,Larus Ledge,TAAD,NA,NA,YOY,1,80,Fish,Chordates,Fish,NA,Cunner,Animalia,Chordata,Actinopterygii,Perciformes,Labridae,Tautogolabrus,Tautogolabrus adspersus
+KEEN ONE,Byrnes,2014,7,21,NW Appledore,North Head,NO_FISH,NA,NA,YOY,0,80,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+KEEN ONE,Byrnes,2014,7,18,NW Appledore,Sandpiper Beach,TAAD,NA,NA,0-10,3,80,Fish,Chordates,Fish,NA,Cunner,Animalia,Chordata,Actinopterygii,Perciformes,Labridae,Tautogolabrus,Tautogolabrus adspersus
+KEEN ONE,Byrnes,2014,7,21,NW Appledore,Magic 8 Ball,TAAD,NA,NA,0-10,86,80,Fish,Chordates,Fish,NA,Cunner,Animalia,Chordata,Actinopterygii,Perciformes,Labridae,Tautogolabrus,Tautogolabrus adspersus
+KEEN ONE,Byrnes,2014,7,18,NW Appledore,Larus Ledge,TAAD,NA,NA,0-10,8,80,Fish,Chordates,Fish,NA,Cunner,Animalia,Chordata,Actinopterygii,Perciformes,Labridae,Tautogolabrus,Tautogolabrus adspersus
+KEEN ONE,Byrnes,2014,7,21,NW Appledore,North Head,NO_FISH,NA,NA,0-10,0,80,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+KEEN ONE,Byrnes,2014,7,18,NW Appledore,Sandpiper Beach,POVI,NA,NA,10-50,2,80,Fish,Chordates,Fish,NA,Pollock,Animalia,Chordata,Actinopterygii,Gadiformes,Gadidae,Pollachius,Pollachius virens
+KEEN ONE,Byrnes,2014,7,21,NW Appledore,Magic 8 Ball,TAAD,NA,NA,10-50,6,80,Fish,Chordates,Fish,NA,Cunner,Animalia,Chordata,Actinopterygii,Perciformes,Labridae,Tautogolabrus,Tautogolabrus adspersus
+KEEN ONE,Byrnes,2014,7,18,NW Appledore,Larus Ledge,TAAD,NA,NA,10-50,1,80,Fish,Chordates,Fish,NA,Cunner,Animalia,Chordata,Actinopterygii,Perciformes,Labridae,Tautogolabrus,Tautogolabrus adspersus
+KEEN ONE,Byrnes,2014,7,21,NW Appledore,North Head,NO_FISH,NA,NA,10-50,0,80,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+KEEN ONE,Byrnes,2014,7,21,NW Appledore,North Head,NO_FISH,NA,NA,50-100,0,80,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+KEEN ONE,Byrnes,2014,7,21,NW Appledore,North Head,NO_FISH,NA,NA,>100,0,80,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+KEEN ONE,Byrnes,2014,7,19,SW Appledore,South Pepperrell,TAAD,NA,NA,YOY,0,80,Fish,Chordates,Fish,NA,Cunner,Animalia,Chordata,Actinopterygii,Perciformes,Labridae,Tautogolabrus,Tautogolabrus adspersus
+KEEN ONE,Byrnes,2014,7,19,SW Appledore,North Pepperrell,TAAD,NA,NA,0-10,10,80,Fish,Chordates,Fish,NA,Cunner,Animalia,Chordata,Actinopterygii,Perciformes,Labridae,Tautogolabrus,Tautogolabrus adspersus
+KEEN ONE,Byrnes,2014,7,17,SW Appledore,North Smith's Cove,TAAD,NA,NA,0-10,5,80,Fish,Chordates,Fish,NA,Cunner,Animalia,Chordata,Actinopterygii,Perciformes,Labridae,Tautogolabrus,Tautogolabrus adspersus
+KEEN ONE,Byrnes,2014,7,19,SW Appledore,North Pepperrell,TAAD,NA,NA,10-50,2,80,Fish,Chordates,Fish,NA,Cunner,Animalia,Chordata,Actinopterygii,Perciformes,Labridae,Tautogolabrus,Tautogolabrus adspersus
+KEEN ONE,Byrnes,2014,7,17,SW Appledore,South Smith's Cove,POVI,NA,NA,10-50,70,80,Fish,Chordates,Fish,NA,Pollock,Animalia,Chordata,Actinopterygii,Gadiformes,Gadidae,Pollachius,Pollachius virens
+KEEN ONE,Byrnes,2014,7,17,SW Appledore,North Smith's Cove,TAAD,NA,NA,10-50,2,80,Fish,Chordates,Fish,NA,Cunner,Animalia,Chordata,Actinopterygii,Perciformes,Labridae,Tautogolabrus,Tautogolabrus adspersus
+KEEN ONE,Byrnes,2014,7,17,SW Appledore,North Smith's Cove,POVI,NA,NA,10-50,5,80,Fish,Chordates,Fish,NA,Pollock,Animalia,Chordata,Actinopterygii,Gadiformes,Gadidae,Pollachius,Pollachius virens
+KEEN ONE,Byrnes,2015,8,13,NE Appledore,Devil's Dance Floor,TAAD,NA,NA,0-10,59,80,Fish,Chordates,Fish,NA,Cunner,Animalia,Chordata,Actinopterygii,Perciformes,Labridae,Tautogolabrus,Tautogolabrus adspersus
+KEEN ONE,Byrnes,2015,8,13,NE Appledore,Broad Cove,TAAD,NA,NA,0-10,1,80,Fish,Chordates,Fish,NA,Cunner,Animalia,Chordata,Actinopterygii,Perciformes,Labridae,Tautogolabrus,Tautogolabrus adspersus
+KEEN ONE,Byrnes,2015,8,13,NE Appledore,Broad Cove,POVI,NA,NA,0-10,17,80,Fish,Chordates,Fish,NA,Pollock,Animalia,Chordata,Actinopterygii,Gadiformes,Gadidae,Pollachius,Pollachius virens
+KEEN ONE,Byrnes,2015,8,12,NE Appledore,Broadway and 42nd,TAAD,NA,NA,0-10,16,80,Fish,Chordates,Fish,NA,Cunner,Animalia,Chordata,Actinopterygii,Perciformes,Labridae,Tautogolabrus,Tautogolabrus adspersus
+KEEN ONE,Byrnes,2015,8,12,NE Appledore,Norwegian Cove,TAAD,NA,NA,0-10,21,80,Fish,Chordates,Fish,NA,Cunner,Animalia,Chordata,Actinopterygii,Perciformes,Labridae,Tautogolabrus,Tautogolabrus adspersus
+KEEN ONE,Byrnes,2015,8,12,NE Appledore,Norwegian Cove,POVI,NA,NA,0-10,9,80,Fish,Chordates,Fish,NA,Pollock,Animalia,Chordata,Actinopterygii,Gadiformes,Gadidae,Pollachius,Pollachius virens
+KEEN ONE,Byrnes,2015,8,12,NE Appledore,Norwegian Cove,PSAM,NA,NA,0-10,1,80,Fish,Chordates,Fish,NA,Winter flounder,Animalia,Chordata,Actinopterygii,Pleuronectiformes,Pleuronectidae,Pseudopleuronectes,Pseudopleuronectes americanus
+KEEN ONE,Byrnes,2015,8,13,NE Appledore,Devil's Dance Floor,TAAD,NA,NA,10-50,18,80,Fish,Chordates,Fish,NA,Cunner,Animalia,Chordata,Actinopterygii,Perciformes,Labridae,Tautogolabrus,Tautogolabrus adspersus
+KEEN ONE,Byrnes,2015,8,13,NE Appledore,Devil's Dance Floor,POVI,NA,NA,10-50,24,80,Fish,Chordates,Fish,NA,Pollock,Animalia,Chordata,Actinopterygii,Gadiformes,Gadidae,Pollachius,Pollachius virens
+KEEN ONE,Byrnes,2015,8,12,NE Appledore,Broadway and 42nd,URRE,NA,NA,10-50,60,80,Fish,Chordates,Fish,NA,Spotted Hake,Animalia,Chordata,Actinopterygii,Gadiformes,Phycidae,Urophycis,Urophycis regia
+KEEN ONE,Byrnes,2015,8,12,NW Appledore,Sandpiper Beach,TAAD,NA,NA,YOY,1,80,Fish,Chordates,Fish,NA,Cunner,Animalia,Chordata,Actinopterygii,Perciformes,Labridae,Tautogolabrus,Tautogolabrus adspersus
+KEEN ONE,Byrnes,2015,8,10,NW Appledore,North Head,TAAD,NA,NA,0-10,5,80,Fish,Chordates,Fish,NA,Cunner,Animalia,Chordata,Actinopterygii,Perciformes,Labridae,Tautogolabrus,Tautogolabrus adspersus
+KEEN ONE,Byrnes,2015,8,10,NW Appledore,North Head,POVI,NA,NA,0-10,2,80,Fish,Chordates,Fish,NA,Pollock,Animalia,Chordata,Actinopterygii,Gadiformes,Gadidae,Pollachius,Pollachius virens
+KEEN ONE,Byrnes,2015,8,10,NW Appledore,Magic 8 Ball,TAAD,NA,NA,0-10,7,80,Fish,Chordates,Fish,NA,Cunner,Animalia,Chordata,Actinopterygii,Perciformes,Labridae,Tautogolabrus,Tautogolabrus adspersus
+KEEN ONE,Byrnes,2015,8,10,NW Appledore,Larus Ledge,TAAD,NA,NA,0-10,11,80,Fish,Chordates,Fish,NA,Cunner,Animalia,Chordata,Actinopterygii,Perciformes,Labridae,Tautogolabrus,Tautogolabrus adspersus
+KEEN ONE,Byrnes,2015,8,12,NW Appledore,Sandpiper Beach,POVI,NA,NA,10-50,12,80,Fish,Chordates,Fish,NA,Pollock,Animalia,Chordata,Actinopterygii,Gadiformes,Gadidae,Pollachius,Pollachius virens
+KEEN ONE,Byrnes,2015,8,10,NW Appledore,North Head,POVI,NA,NA,10-50,12,80,Fish,Chordates,Fish,NA,Pollock,Animalia,Chordata,Actinopterygii,Gadiformes,Gadidae,Pollachius,Pollachius virens
+KEEN ONE,Byrnes,2015,8,10,NW Appledore,Magic 8 Ball,POVI,NA,NA,10-50,1,80,Fish,Chordates,Fish,NA,Pollock,Animalia,Chordata,Actinopterygii,Gadiformes,Gadidae,Pollachius,Pollachius virens
+KEEN ONE,Byrnes,2015,8,10,NW Appledore,Larus Ledge,POVI,NA,NA,10-50,1,80,Fish,Chordates,Fish,NA,Pollock,Animalia,Chordata,Actinopterygii,Gadiformes,Gadidae,Pollachius,Pollachius virens
+KEEN ONE,Byrnes,2015,8,13,SW Appledore,South Smith's Cove,NO_FISH,NA,NA,YOY,0,80,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+KEEN ONE,Byrnes,2015,8,13,SW Appledore,North Smith's Cove,TAAD,NA,NA,0-10,1,80,Fish,Chordates,Fish,NA,Cunner,Animalia,Chordata,Actinopterygii,Perciformes,Labridae,Tautogolabrus,Tautogolabrus adspersus
+KEEN ONE,Byrnes,2015,8,13,SW Appledore,South Smith's Cove,NO_FISH,NA,NA,0-10,0,80,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+KEEN ONE,Byrnes,2015,8,11,SW Appledore,North Pepperrell,TAAD,NA,NA,0-10,3,80,Fish,Chordates,Fish,NA,Cunner,Animalia,Chordata,Actinopterygii,Perciformes,Labridae,Tautogolabrus,Tautogolabrus adspersus
+KEEN ONE,Byrnes,2015,8,12,SW Appledore,South Pepperrell,TAON,NA,NA,0-10,41,80,Fish,Chordates,Fish,NA,Tautog or Blackfish,Animalia,Chordata,Actinopterygii,Perciformes,Labridae,Tautoga,Tautoga onitis
+KEEN ONE,Byrnes,2015,8,13,SW Appledore,South Smith's Cove,NO_FISH,NA,NA,10-50,0,80,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+KEEN ONE,Byrnes,2015,8,13,SW Appledore,South Smith's Cove,NO_FISH,NA,NA,50-100,0,80,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+KEEN ONE,Byrnes,2015,8,13,SW Appledore,South Smith's Cove,NO_FISH,NA,NA,>100,0,80,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+KEEN ONE,Byrnes,2016,8,9,NE Appledore,Broadway and 42nd,TAAD,NA,NA,0-10,31,80,Fish,Chordates,Fish,NA,Cunner,Animalia,Chordata,Actinopterygii,Perciformes,Labridae,Tautogolabrus,Tautogolabrus adspersus
+KEEN ONE,Byrnes,2016,8,9,NE Appledore,Devil's Dance Floor,TAAD,NA,NA,0-10,40,80,Fish,Chordates,Fish,NA,Cunner,Animalia,Chordata,Actinopterygii,Perciformes,Labridae,Tautogolabrus,Tautogolabrus adspersus
+KEEN ONE,Byrnes,2016,8,8,NE Appledore,Norwegian Cove,TAAD,NA,NA,0-10,6,80,Fish,Chordates,Fish,NA,Cunner,Animalia,Chordata,Actinopterygii,Perciformes,Labridae,Tautogolabrus,Tautogolabrus adspersus
+KEEN ONE,Byrnes,2016,8,8,NE Appledore,Broad Cove,TAAD,NA,NA,0-10,63,80,Fish,Chordates,Fish,NA,Cunner,Animalia,Chordata,Actinopterygii,Perciformes,Labridae,Tautogolabrus,Tautogolabrus adspersus
+KEEN ONE,Byrnes,2016,8,9,NE Appledore,Broadway and 42nd,TAAD,NA,NA,10-50,2,80,Fish,Chordates,Fish,NA,Cunner,Animalia,Chordata,Actinopterygii,Perciformes,Labridae,Tautogolabrus,Tautogolabrus adspersus
+KEEN ONE,Byrnes,2016,8,9,NE Appledore,Devil's Dance Floor,TAAD,NA,NA,10-50,6,80,Fish,Chordates,Fish,NA,Cunner,Animalia,Chordata,Actinopterygii,Perciformes,Labridae,Tautogolabrus,Tautogolabrus adspersus
+KEEN ONE,Byrnes,2016,8,8,NE Appledore,Broad Cove,TAAD,NA,NA,10-50,5,80,Fish,Chordates,Fish,NA,Cunner,Animalia,Chordata,Actinopterygii,Perciformes,Labridae,Tautogolabrus,Tautogolabrus adspersus
+KEEN ONE,Byrnes,2016,8,9,NW Appledore,Sandpiper Beach,NO_FISH,NA,NA,YOY,0,80,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+KEEN ONE,Byrnes,2016,8,9,NW Appledore,Magic 8 Ball,TAAD,NA,NA,YOY,3,80,Fish,Chordates,Fish,NA,Cunner,Animalia,Chordata,Actinopterygii,Perciformes,Labridae,Tautogolabrus,Tautogolabrus adspersus
+KEEN ONE,Byrnes,2016,8,11,NW Appledore,Larus Ledge,TAAD,NA,NA,0-10,13,80,Fish,Chordates,Fish,NA,Cunner,Animalia,Chordata,Actinopterygii,Perciformes,Labridae,Tautogolabrus,Tautogolabrus adspersus
+KEEN ONE,Byrnes,2016,8,9,NW Appledore,Sandpiper Beach,NO_FISH,NA,NA,0-10,0,80,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+KEEN ONE,Byrnes,2016,8,9,NW Appledore,Magic 8 Ball,TAAD,NA,NA,0-10,3,80,Fish,Chordates,Fish,NA,Cunner,Animalia,Chordata,Actinopterygii,Perciformes,Labridae,Tautogolabrus,Tautogolabrus adspersus
+KEEN ONE,Byrnes,2016,8,11,NW Appledore,North Head,TAAD,NA,NA,0-10,4,80,Fish,Chordates,Fish,NA,Cunner,Animalia,Chordata,Actinopterygii,Perciformes,Labridae,Tautogolabrus,Tautogolabrus adspersus
+KEEN ONE,Byrnes,2016,8,9,NW Appledore,Sandpiper Beach,NO_FISH,NA,NA,10-50,0,80,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+KEEN ONE,Byrnes,2016,8,11,NW Appledore,North Head,TAAD,NA,NA,10-50,2,80,Fish,Chordates,Fish,NA,Cunner,Animalia,Chordata,Actinopterygii,Perciformes,Labridae,Tautogolabrus,Tautogolabrus adspersus
+KEEN ONE,Byrnes,2016,8,9,NW Appledore,Sandpiper Beach,NO_FISH,NA,NA,50-100,0,80,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+KEEN ONE,Byrnes,2016,8,9,NW Appledore,Sandpiper Beach,NO_FISH,NA,NA,>100,0,80,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+KEEN ONE,Byrnes,2016,8,10,SW Appledore,South Pepperrell,TAAD,NA,NA,YOY,17,80,Fish,Chordates,Fish,NA,Cunner,Animalia,Chordata,Actinopterygii,Perciformes,Labridae,Tautogolabrus,Tautogolabrus adspersus
+KEEN ONE,Byrnes,2016,8,10,SW Appledore,South Pepperrell,TAON,NA,NA,YOY,17,80,Fish,Chordates,Fish,NA,Tautog or Blackfish,Animalia,Chordata,Actinopterygii,Perciformes,Labridae,Tautoga,Tautoga onitis
+KEEN ONE,Byrnes,2016,8,10,SW Appledore,North Smith's Cove,TAAD,NA,NA,YOY,52,80,Fish,Chordates,Fish,NA,Cunner,Animalia,Chordata,Actinopterygii,Perciformes,Labridae,Tautogolabrus,Tautogolabrus adspersus
+KEEN ONE,Byrnes,2016,8,10,SW Appledore,South Smith's Cove,TAAD,NA,NA,YOY,9,80,Fish,Chordates,Fish,NA,Cunner,Animalia,Chordata,Actinopterygii,Perciformes,Labridae,Tautogolabrus,Tautogolabrus adspersus
+KEEN ONE,Byrnes,2016,8,10,SW Appledore,North Pepperrell,TAAD,NA,NA,0-10,3,80,Fish,Chordates,Fish,NA,Cunner,Animalia,Chordata,Actinopterygii,Perciformes,Labridae,Tautogolabrus,Tautogolabrus adspersus
+KEEN ONE,Byrnes,2016,8,10,SW Appledore,South Pepperrell,TAAD,NA,NA,0-10,61,80,Fish,Chordates,Fish,NA,Cunner,Animalia,Chordata,Actinopterygii,Perciformes,Labridae,Tautogolabrus,Tautogolabrus adspersus
+KEEN ONE,Byrnes,2016,8,10,SW Appledore,North Smith's Cove,TAAD,NA,NA,0-10,12,80,Fish,Chordates,Fish,NA,Cunner,Animalia,Chordata,Actinopterygii,Perciformes,Labridae,Tautogolabrus,Tautogolabrus adspersus
+KEEN ONE,Byrnes,2016,8,10,SW Appledore,South Smith's Cove,TAAD,NA,NA,0-10,79,80,Fish,Chordates,Fish,NA,Cunner,Animalia,Chordata,Actinopterygii,Perciformes,Labridae,Tautogolabrus,Tautogolabrus adspersus
+KEEN ONE,Byrnes,2016,8,10,SW Appledore,South Smith's Cove,TAAD,NA,NA,10-50,3,80,Fish,Chordates,Fish,NA,Cunner,Animalia,Chordata,Actinopterygii,Perciformes,Labridae,Tautogolabrus,Tautogolabrus adspersus
+KEEN ONE,Byrnes,2017,8,16,NE Appledore,Broadway and 42nd,NO_FISH,NA,NA,YOY,0,80,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+KEEN ONE,Byrnes,2017,8,15,NE Appledore,Broad Cove,POVI,NA,NA,YOY,3,80,Fish,Chordates,Fish,NA,Pollock,Animalia,Chordata,Actinopterygii,Gadiformes,Gadidae,Pollachius,Pollachius virens
+KEEN ONE,Byrnes,2017,8,16,NE Appledore,Devil's Dance Floor,TAAD,NA,NA,YOY,1,80,Fish,Chordates,Fish,NA,Cunner,Animalia,Chordata,Actinopterygii,Perciformes,Labridae,Tautogolabrus,Tautogolabrus adspersus
+KEEN ONE,Byrnes,2017,8,16,NE Appledore,Broadway and 42nd,NO_FISH,NA,NA,0-10,0,80,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+KEEN ONE,Byrnes,2017,8,16,NE Appledore,Broadway and 42nd,NO_FISH,NA,NA,10-50,0,80,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+KEEN ONE,Byrnes,2017,8,16,NE Appledore,Broadway and 42nd,NO_FISH,NA,NA,50-100,0,80,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+KEEN ONE,Byrnes,2017,8,15,NE Appledore,Norwegian Cove,POVI,NA,NA,50-100,49,80,Fish,Chordates,Fish,NA,Pollock,Animalia,Chordata,Actinopterygii,Gadiformes,Gadidae,Pollachius,Pollachius virens
+KEEN ONE,Byrnes,2017,8,16,NE Appledore,Broadway and 42nd,NO_FISH,NA,NA,>100,0,80,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+KEEN ONE,Byrnes,2017,8,15,NW Appledore,8 Ball,POVI,NA,NA,YOY,3,80,Fish,Chordates,Fish,NA,Pollock,Animalia,Chordata,Actinopterygii,Gadiformes,Gadidae,Pollachius,Pollachius virens
+KEEN ONE,Byrnes,2017,8,15,NW Appledore,North Head,NO_FISH,NA,NA,YOY,0,80,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+KEEN ONE,Byrnes,2017,8,16,NW Appledore,Sandpiper Beach,NO_FISH,NA,NA,YOY,0,80,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+KEEN ONE,Byrnes,2017,8,17,NW Appledore,Larus Ledge,POVI,NA,NA,0-10,4,80,Fish,Chordates,Fish,NA,Pollock,Animalia,Chordata,Actinopterygii,Gadiformes,Gadidae,Pollachius,Pollachius virens
+KEEN ONE,Byrnes,2017,8,15,NW Appledore,North Head,NO_FISH,NA,NA,0-10,0,80,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+KEEN ONE,Byrnes,2017,8,16,NW Appledore,Sandpiper Beach,NO_FISH,NA,NA,0-10,0,80,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+KEEN ONE,Byrnes,2017,8,17,NW Appledore,Larus Ledge,POVI,NA,NA,10-50,3,80,Fish,Chordates,Fish,NA,Pollock,Animalia,Chordata,Actinopterygii,Gadiformes,Gadidae,Pollachius,Pollachius virens
+KEEN ONE,Byrnes,2017,8,15,NW Appledore,North Head,NO_FISH,NA,NA,10-50,0,80,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+KEEN ONE,Byrnes,2017,8,16,NW Appledore,Sandpiper Beach,NO_FISH,NA,NA,10-50,0,80,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+KEEN ONE,Byrnes,2017,8,15,NW Appledore,North Head,NO_FISH,NA,NA,50-100,0,80,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+KEEN ONE,Byrnes,2017,8,16,NW Appledore,Sandpiper Beach,NO_FISH,NA,NA,50-100,0,80,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+KEEN ONE,Byrnes,2017,8,15,NW Appledore,North Head,NO_FISH,NA,NA,>100,0,80,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+KEEN ONE,Byrnes,2017,8,16,NW Appledore,Sandpiper Beach,NO_FISH,NA,NA,>100,0,80,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+KEEN ONE,Byrnes,2017,8,17,SW Appledore,North Smith's Cove,NO_FISH,NA,NA,YOY,0,80,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+KEEN ONE,Byrnes,2017,8,17,SW Appledore,South Pepperrell,NO_FISH,NA,NA,YOY,0,80,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+KEEN ONE,Byrnes,2017,8,17,SW Appledore,North Pepperrell,TAAD,NA,NA,0-10,2,80,Fish,Chordates,Fish,NA,Cunner,Animalia,Chordata,Actinopterygii,Perciformes,Labridae,Tautogolabrus,Tautogolabrus adspersus
+KEEN ONE,Byrnes,2017,8,17,SW Appledore,North Smith's Cove,NO_FISH,NA,NA,0-10,0,80,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+KEEN ONE,Byrnes,2017,8,17,SW Appledore,South Pepperrell,NO_FISH,NA,NA,0-10,0,80,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+KEEN ONE,Byrnes,2017,8,16,SW Appledore,South Smith's Cove,TAAD,NA,NA,0-10,1,80,Fish,Chordates,Fish,NA,Cunner,Animalia,Chordata,Actinopterygii,Perciformes,Labridae,Tautogolabrus,Tautogolabrus adspersus
+KEEN ONE,Byrnes,2017,8,17,SW Appledore,North Pepperrell,TAAD,NA,NA,10-50,1,80,Fish,Chordates,Fish,NA,Cunner,Animalia,Chordata,Actinopterygii,Perciformes,Labridae,Tautogolabrus,Tautogolabrus adspersus
+KEEN ONE,Byrnes,2017,8,17,SW Appledore,North Smith's Cove,NO_FISH,NA,NA,10-50,0,80,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+KEEN ONE,Byrnes,2017,8,17,SW Appledore,South Pepperrell,NO_FISH,NA,NA,10-50,0,80,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+KEEN ONE,Byrnes,2017,8,16,SW Appledore,South Smith's Cove,POVI,NA,NA,10-50,2,80,Fish,Chordates,Fish,NA,Pollock,Animalia,Chordata,Actinopterygii,Gadiformes,Gadidae,Pollachius,Pollachius virens
+KEEN ONE,Byrnes,2017,8,17,SW Appledore,North Smith's Cove,NO_FISH,NA,NA,50-100,0,80,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+KEEN ONE,Byrnes,2017,8,17,SW Appledore,South Pepperrell,NO_FISH,NA,NA,50-100,0,80,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+KEEN ONE,Byrnes,2017,8,16,SW Appledore,South Smith's Cove,POVI,NA,NA,50-100,4,80,Fish,Chordates,Fish,NA,Pollock,Animalia,Chordata,Actinopterygii,Gadiformes,Gadidae,Pollachius,Pollachius virens
+KEEN ONE,Byrnes,2017,8,17,SW Appledore,North Smith's Cove,NO_FISH,NA,NA,>100,0,80,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+KEEN ONE,Byrnes,2017,8,17,SW Appledore,South Pepperrell,NO_FISH,NA,NA,>100,0,80,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+KEEN ONE,Byrnes,2017,8,16,SW Appledore,South Smith's Cove,POVI,NA,NA,>100,1,80,Fish,Chordates,Fish,NA,Pollock,Animalia,Chordata,Actinopterygii,Gadiformes,Gadidae,Pollachius,Pollachius virens
+KEEN ONE,Byrnes,2018,8,28,NE Appledore,Broad Cove,TAAD,NA,NA,YOY,3,80,Fish,Chordates,Fish,NA,Cunner,Animalia,Chordata,Actinopterygii,Perciformes,Labridae,Tautogolabrus,Tautogolabrus adspersus
+KEEN ONE,Byrnes,2018,8,28,NE Appledore,Norwegian Cove,TAAD,NA,NA,YOY,12,80,Fish,Chordates,Fish,NA,Cunner,Animalia,Chordata,Actinopterygii,Perciformes,Labridae,Tautogolabrus,Tautogolabrus adspersus
+KEEN ONE,Byrnes,2018,8,28,NE Appledore,Broadway and 42nd,TAAD,NA,NA,YOY,1,80,Fish,Chordates,Fish,NA,Cunner,Animalia,Chordata,Actinopterygii,Perciformes,Labridae,Tautogolabrus,Tautogolabrus adspersus
+KEEN ONE,Byrnes,2018,8,28,NE Appledore,Devil's Dance Floor,TAAD,NA,NA,YOY,9,80,Fish,Chordates,Fish,NA,Cunner,Animalia,Chordata,Actinopterygii,Perciformes,Labridae,Tautogolabrus,Tautogolabrus adspersus
+KEEN ONE,Byrnes,2018,8,28,NE Appledore,Broad Cove,TAAD,NA,NA,0-10,16,80,Fish,Chordates,Fish,NA,Cunner,Animalia,Chordata,Actinopterygii,Perciformes,Labridae,Tautogolabrus,Tautogolabrus adspersus
+KEEN ONE,Byrnes,2018,8,28,NE Appledore,Norwegian Cove,TAAD,NA,NA,0-10,78,80,Fish,Chordates,Fish,NA,Cunner,Animalia,Chordata,Actinopterygii,Perciformes,Labridae,Tautogolabrus,Tautogolabrus adspersus
+KEEN ONE,Byrnes,2018,8,28,NE Appledore,Broadway and 42nd,TAAD,NA,NA,0-10,158,80,Fish,Chordates,Fish,NA,Cunner,Animalia,Chordata,Actinopterygii,Perciformes,Labridae,Tautogolabrus,Tautogolabrus adspersus
+KEEN ONE,Byrnes,2018,8,28,NE Appledore,Broadway and 42nd,TOAN,NA,NA,0-10,26,80,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+KEEN ONE,Byrnes,2018,8,28,NE Appledore,Broadway and 42nd,POVI,NA,NA,0-10,3,80,Fish,Chordates,Fish,NA,Pollock,Animalia,Chordata,Actinopterygii,Gadiformes,Gadidae,Pollachius,Pollachius virens
+KEEN ONE,Byrnes,2018,8,28,NE Appledore,Devil's Dance Floor,TAAD,NA,NA,0-10,26,80,Fish,Chordates,Fish,NA,Cunner,Animalia,Chordata,Actinopterygii,Perciformes,Labridae,Tautogolabrus,Tautogolabrus adspersus
+KEEN ONE,Byrnes,2018,8,28,NE Appledore,Norwegian Cove,TAAD,NA,NA,10-50,5,80,Fish,Chordates,Fish,NA,Cunner,Animalia,Chordata,Actinopterygii,Perciformes,Labridae,Tautogolabrus,Tautogolabrus adspersus
+KEEN ONE,Byrnes,2018,8,28,NE Appledore,Broadway and 42nd,TAAD,NA,NA,10-50,18,80,Fish,Chordates,Fish,NA,Cunner,Animalia,Chordata,Actinopterygii,Perciformes,Labridae,Tautogolabrus,Tautogolabrus adspersus
+KEEN ONE,Byrnes,2018,8,28,NE Appledore,Broadway and 42nd,TOAN,NA,NA,10-50,1,80,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+KEEN ONE,Byrnes,2018,8,28,NE Appledore,Devil's Dance Floor,TAAD,NA,NA,10-50,2,80,Fish,Chordates,Fish,NA,Cunner,Animalia,Chordata,Actinopterygii,Perciformes,Labridae,Tautogolabrus,Tautogolabrus adspersus
+KEEN ONE,Byrnes,2018,8,29,NW Appledore,8 Ball,TAAD,NA,NA,YOY,37,80,Fish,Chordates,Fish,NA,Cunner,Animalia,Chordata,Actinopterygii,Perciformes,Labridae,Tautogolabrus,Tautogolabrus adspersus
+KEEN ONE,Byrnes,2018,8,30,NW Appledore,Sandpiper Beach,TAAD,NA,NA,YOY,27,80,Fish,Chordates,Fish,NA,Cunner,Animalia,Chordata,Actinopterygii,Perciformes,Labridae,Tautogolabrus,Tautogolabrus adspersus
+KEEN ONE,Byrnes,2018,8,29,NW Appledore,North Head,TAAD,NA,NA,0-10,72,80,Fish,Chordates,Fish,NA,Cunner,Animalia,Chordata,Actinopterygii,Perciformes,Labridae,Tautogolabrus,Tautogolabrus adspersus
+KEEN ONE,Byrnes,2018,8,29,NW Appledore,North Head,MOSA,NA,NA,0-10,32,80,Fish,Chordates,Fish,NA,Striped Bass,Animalia,Chordata,Actinopterygii,Perciformes,Moronidae,Morone,Morone saxatilis
+KEEN ONE,Byrnes,2018,8,29,NW Appledore,8 Ball,TAAD,NA,NA,0-10,60,80,Fish,Chordates,Fish,NA,Cunner,Animalia,Chordata,Actinopterygii,Perciformes,Labridae,Tautogolabrus,Tautogolabrus adspersus
+KEEN ONE,Byrnes,2018,8,30,NW Appledore,Larus Ledge,TAAD,NA,NA,0-10,21,80,Fish,Chordates,Fish,NA,Cunner,Animalia,Chordata,Actinopterygii,Perciformes,Labridae,Tautogolabrus,Tautogolabrus adspersus
+KEEN ONE,Byrnes,2018,8,30,NW Appledore,Sandpiper Beach,TAAD,NA,NA,0-10,21,80,Fish,Chordates,Fish,NA,Cunner,Animalia,Chordata,Actinopterygii,Perciformes,Labridae,Tautogolabrus,Tautogolabrus adspersus
+KEEN ONE,Byrnes,2018,8,30,NW Appledore,Larus Ledge,TAAD,NA,NA,10-50,2,80,Fish,Chordates,Fish,NA,Cunner,Animalia,Chordata,Actinopterygii,Perciformes,Labridae,Tautogolabrus,Tautogolabrus adspersus
+KEEN ONE,Byrnes,2018,8,30,NW Appledore,Sandpiper Beach,TAAD,NA,NA,10-50,2,80,Fish,Chordates,Fish,NA,Cunner,Animalia,Chordata,Actinopterygii,Perciformes,Labridae,Tautogolabrus,Tautogolabrus adspersus
+KEEN ONE,Byrnes,2018,8,30,SW Appledore,North Pepperrell,TAAD,NA,NA,YOY,55,80,Fish,Chordates,Fish,NA,Cunner,Animalia,Chordata,Actinopterygii,Perciformes,Labridae,Tautogolabrus,Tautogolabrus adspersus
+KEEN ONE,Byrnes,2018,8,31,SW Appledore,North Smith's Cove,TAAD,NA,NA,YOY,28,80,Fish,Chordates,Fish,NA,Cunner,Animalia,Chordata,Actinopterygii,Perciformes,Labridae,Tautogolabrus,Tautogolabrus adspersus
+KEEN ONE,Byrnes,2018,8,31,SW Appledore,South Pepperrell,TAAD,NA,NA,YOY,3,80,Fish,Chordates,Fish,NA,Cunner,Animalia,Chordata,Actinopterygii,Perciformes,Labridae,Tautogolabrus,Tautogolabrus adspersus
+KEEN ONE,Byrnes,2018,8,31,SW Appledore,South Smith's Cove,TAAD,NA,NA,YOY,46,80,Fish,Chordates,Fish,NA,Cunner,Animalia,Chordata,Actinopterygii,Perciformes,Labridae,Tautogolabrus,Tautogolabrus adspersus
+KEEN ONE,Byrnes,2018,8,30,SW Appledore,North Pepperrell,TAAD,NA,NA,0-10,32,80,Fish,Chordates,Fish,NA,Cunner,Animalia,Chordata,Actinopterygii,Perciformes,Labridae,Tautogolabrus,Tautogolabrus adspersus
+KEEN ONE,Byrnes,2018,8,31,SW Appledore,North Smith's Cove,TAAD,NA,NA,0-10,39,80,Fish,Chordates,Fish,NA,Cunner,Animalia,Chordata,Actinopterygii,Perciformes,Labridae,Tautogolabrus,Tautogolabrus adspersus
+KEEN ONE,Byrnes,2018,8,31,SW Appledore,South Pepperrell,TAAD,NA,NA,0-10,14,80,Fish,Chordates,Fish,NA,Cunner,Animalia,Chordata,Actinopterygii,Perciformes,Labridae,Tautogolabrus,Tautogolabrus adspersus
+KEEN ONE,Byrnes,2018,8,31,SW Appledore,South Smith's Cove,TAAD,NA,NA,0-10,13,80,Fish,Chordates,Fish,NA,Cunner,Animalia,Chordata,Actinopterygii,Perciformes,Labridae,Tautogolabrus,Tautogolabrus adspersus
+KEEN ONE,Byrnes,2018,8,30,SW Appledore,North Pepperrell,TAAD,NA,NA,10-50,7,80,Fish,Chordates,Fish,NA,Cunner,Animalia,Chordata,Actinopterygii,Perciformes,Labridae,Tautogolabrus,Tautogolabrus adspersus
+KEEN ONE,Byrnes,2018,8,31,SW Appledore,North Smith's Cove,TAAD,NA,NA,10-50,3,80,Fish,Chordates,Fish,NA,Cunner,Animalia,Chordata,Actinopterygii,Perciformes,Labridae,Tautogolabrus,Tautogolabrus adspersus
+KEEN ONE,Byrnes,2018,8,31,SW Appledore,South Pepperrell,TAAD,NA,NA,10-50,1,80,Fish,Chordates,Fish,NA,Cunner,Animalia,Chordata,Actinopterygii,Perciformes,Labridae,Tautogolabrus,Tautogolabrus adspersus
+KEEN ONE,Byrnes,2018,8,31,SW Appledore,South Smith's Cove,TAAD,NA,NA,10-50,2,80,Fish,Chordates,Fish,NA,Cunner,Animalia,Chordata,Actinopterygii,Perciformes,Labridae,Tautogolabrus,Tautogolabrus adspersus
