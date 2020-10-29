@@ -1,5 +1,4 @@
-# SEED
-Shoals EcosystEm Data
+# SEED data from KEEN ONE
+Shoals EcosystEm Data from the Kelp Ecosystem Ecology Network Of New England
 
-This respository is for the Shoals EcosystEm Data project, a multi-institutional consortium of marine ecologists. 
-Our purpose is to explore linkages among the marine intertidal and subtidal zone using observational data. 
+See https://github.com/kelpecosystems/observational_data for details
