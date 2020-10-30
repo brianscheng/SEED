@@ -82,7 +82,7 @@ generate_output <- function(adf){
   tseries_fun(adf) %>% 
     car::Anova(test.statistic  = "Chisq") %>% 
     tidy() %>%
-    knitr::kable("html", digits = 2) %>% 
+    knitr::kable("html", digits = 3) %>% 
     kableExtra::kable_styling() %>%
     print
   
