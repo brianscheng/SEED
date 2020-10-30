@@ -1,0 +1,13 @@
+Manifest file for edi.236.1-4c9184f37cff01bcdc32dc486ec36961.zip created on Wed Jun 24 08:24:50 MDT 2020
+percent_cover_data.csv (33827607 bytes)
+counts_data.csv (20057315 bytes)
+sizes_data.csv (7209685 bytes)
+notes.csv (343573 bytes)
+species_list.csv (20784 bytes)
+transect_info.csv (1211 bytes)
+fucus_asco_max_size.csv (375658 bytes)
+categories_data.csv (10146081 bytes)
+sml_intertidal_documentation.zip (810276 bytes)
+edi.236.1.xml (57023 bytes)
+edi.236.1.txt (28524 bytes)
+edi.236.1.report.xml (159813 bytes)

@@ -1,0 +1,1482 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<eml:eml packageId="edi.236.1" system="https://pasta.edirepository.org"
+  xmlns:eml="eml://ecoinformatics.org/eml-2.1.1"
+  xmlns:stmml="http://www.xml-cml.org/schema/stmml-1.1"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="eml://ecoinformatics.org/eml-2.1.1  http://nis.lternet.edu/schemas/EML/eml-2.1.1/eml.xsd">
+  <access authSystem="https://pasta.edirepository.org/authentication"
+    order="allowFirst" scope="document" system="https://pasta.edirepository.org">
+    <allow>
+      <principal>uid=EDI,o=EDI,dc=edirepository,dc=org</principal>
+      <permission>all</permission>
+    </allow>
+    <allow>
+      <principal>uid=anguyen,o=EDI,dc=edirepository,dc=org</principal>
+      <permission>all</permission>
+    </allow>
+    <allow>
+      <principal>public</principal>
+      <permission>read</permission>
+    </allow>
+  </access>
+  <dataset>
+    <alternateIdentifier system="https://doi.org">doi:10.6073/pasta/b8f52444f86fbefe97c5bb40673e02d5</alternateIdentifier>
+    <title>Long-term Rocky Intertidal Monitoring on Appledore Island, Maine, 1982-2017</title>
+    <creator>
+      <individualName>
+        <surName>Shoals Marine Laboratory</surName>
+      </individualName>
+      <organizationName>University of New Hampshire &amp; Cornell University</organizationName>
+      <electronicMailAddress>shoals.lab@unh.edu</electronicMailAddress>
+    </creator>
+    <associatedParty>
+      <individualName>
+        <givenName>An T</givenName>
+        <surName>Nguyen</surName>
+      </individualName>
+      <organizationName>Environmental Data Initiative</organizationName>
+      <electronicMailAddress>annguyen@bennington.edu</electronicMailAddress>
+      <role>Data Archiver</role>
+    </associatedParty>
+    <pubDate>2018-08-18</pubDate>
+    <abstract>
+      <para>
+  Shoals Marine Laboratory, jointly operated by Cornell University and
+  the University of New Hampshire, has conducted annual surveys of
+  intertidal biota on Appledore Island since 1972 and on Star Island in
+  1970-72. The primary goal of the survey is to train undergraduate
+  university students in observation, species identification, survey
+  methodology, data collection and management, and science
+  communication. The secondary, but equally important, goal is to
+  generate a long-term record of intertidal biota found on Appledore
+  Island, Maine USA. This published dataset includes species presence,
+  abundance, size, and distribution since 1985, the earliest year full
+  records were available for digital archive.
+</para>
+    </abstract>
+    <keywordSet>
+      <keyword>intertidal</keyword>
+      <keyword>macroalgae</keyword>
+      <keyword>algae</keyword>
+      <keyword>invertebrate</keyword>
+      <keywordThesaurus>LTER</keywordThesaurus>
+    </keywordSet>
+    <additionalInfo>
+      <para>
+  We would like to acknowledge the contributions of key personnel who
+  has significantly contributed to the project and to Shoals Marine Lab
+  more generally. Please see sml_rocky_intertidal_acknowledgements.pdf
+  in the accompanying sml_rocky_intertidal_documentation.zip file.
+</para>
+    </additionalInfo>
+    <intellectualRights>
+      <para>
+  This information is released under the Creative Commons license -
+  Attribution - CC BY (https://creativecommons.org/licenses/by/4.0/).
+  The consumer of these data ("Data User" herein) is required
+  to cite it appropriately in any publication that results from its use.
+  The Data User should realize that these data may be actively used by
+  others for ongoing research and that coordination may be necessary to
+  prevent duplicate publication. The Data User is urged to contact the
+  authors of these data if any questions about methodology or results
+  occur. Where appropriate, the Data User is encouraged to consider
+  collaboration or co-authorship with the authors. The Data User should
+  realize that misinterpretation of data may occur if used out of
+  context of the original study. While substantial efforts are made to
+  ensure the accuracy of data and associated documentation, complete
+  accuracy of data sets cannot be guaranteed. All data are made
+  available "as is." The Data User should be aware, however,
+  that data are updated periodically and it is the responsibility of the
+  Data User to check for new versions of the data. The data authors and
+  the repository where these data were obtained shall not be liable for
+  damages resulting from any use or misinterpretation of the data. Thank
+  you.
+</para>
+    </intellectualRights>
+    <coverage>
+      <geographicCoverage>
+        <geographicDescription>Appledore Island, Maine, United States of America</geographicDescription>
+        <boundingCoordinates>
+          <westBoundingCoordinate>-70.620518</westBoundingCoordinate>
+          <eastBoundingCoordinate>-70.608835</eastBoundingCoordinate>
+          <northBoundingCoordinate>42.997245</northBoundingCoordinate>
+          <southBoundingCoordinate>42.981610</southBoundingCoordinate>
+        </boundingCoordinates>
+      </geographicCoverage>
+      <temporalCoverage>
+        <rangeOfDates>
+          <beginDate>
+            <calendarDate>1982</calendarDate>
+          </beginDate>
+          <endDate>
+            <calendarDate>2017</calendarDate>
+          </endDate>
+        </rangeOfDates>
+      </temporalCoverage>
+    </coverage>
+    <maintenance>
+      <description>ongoing</description>
+    </maintenance>
+    <contact>
+      <individualName>
+        <surName>Shoals Marine Laboratory</surName>
+      </individualName>
+      <organizationName>University of New Hampshire &amp; Cornell University</organizationName>
+      <electronicMailAddress>shoals.lab@unh.edu</electronicMailAddress>
+    </contact>
+    <methods>
+      <methodStep>
+        <description>
+          <para>
+  Sampling was conducted using 20 x 20 cm square quadrats, from the low
+  to high intertidal zone, at 0.33 meter (1.0 foot) intervals in
+  vertical height from mean low water at each of several transects
+  around the island. A comprehensive protocol is provided in a separate
+  file. There have been modifications to the protocol over time, which
+  are noted in the provided data quality document. Please review these
+  documents in the .zip archive before making use of this dataset.
+</para>
+        </description>
+      </methodStep>
+    </methods>
+    <dataTable>
+      <entityName>percent_cover_data.csv</entityName>
+      <entityDescription>Percent cover data, algae and sessile invertebrates</entityDescription>
+      <physical>
+        <objectName>percent_cover_data.csv</objectName>
+        <size unit="byte">33827607</size>
+        <authentication method="MD5">1a2d152432f0d191becd5bb1877a5e24</authentication>
+        <dataFormat>
+          <textFormat>
+            <numHeaderLines>1</numHeaderLines>
+            <recordDelimiter>\n</recordDelimiter>
+            <attributeOrientation>column</attributeOrientation>
+            <simpleDelimited>
+              <fieldDelimiter>,</fieldDelimiter>
+              <quoteCharacter>"</quoteCharacter>
+            </simpleDelimited>
+          </textFormat>
+        </dataFormat>
+        <distribution>
+          <online>
+            <url>https://pasta.lternet.edu/package/data/eml/edi/236/1/8a3bed7ff7c534c5a5301e507118e880</url>
+          </online>
+        </distribution>
+      </physical>
+      <attributeList>
+        <attribute>
+          <attributeName>Year</attributeName>
+          <attributeDefinition>Year data was taken</attributeDefinition>
+          <storageType>date</storageType>
+          <measurementScale>
+            <dateTime>
+              <formatString>YYYY</formatString>
+            </dateTime>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>Transect</attributeName>
+          <attributeDefinition>Transect number</attributeDefinition>
+          <storageType>float</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>dimensionless</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>natural</numberType>
+                <bounds>
+                  <minimum exclusive="false">1</minimum>
+                  <maximum exclusive="false">28</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>Level</attributeName>
+          <attributeDefinition>Depth level from transect pin</attributeDefinition>
+          <storageType>float</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>dimensionless</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+                <bounds>
+                  <minimum exclusive="false">-4</minimum>
+                  <maximum exclusive="false">19</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>Replicate</attributeName>
+          <attributeDefinition>Replicate number</attributeDefinition>
+          <storageType>string</storageType>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <textDomain>
+                  <definition>Replicate number</definition>
+                </textDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>Data_taken</attributeName>
+          <attributeDefinition>Whether data was taken for that quadrant</attributeDefinition>
+          <storageType>string</storageType>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <enumeratedDomain>
+                  <codeDefinition>
+                    <code>no</code>
+                    <definition>Data was not taken for quadrant</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>yes</code>
+                    <definition>Data was taken for quadrant</definition>
+                  </codeDefinition>
+                </enumeratedDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>Organism</attributeName>
+          <attributeDefinition>Organism in question</attributeDefinition>
+          <storageType>string</storageType>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <textDomain>
+                  <definition>Organism in question</definition>
+                </textDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>Percent_cover</attributeName>
+          <attributeDefinition>Percent cover of quadrat value</attributeDefinition>
+          <storageType>string</storageType>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <textDomain>
+                  <definition>Percent cover of quadrat value</definition>
+                </textDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+        </attribute>
+      </attributeList>
+      <numberOfRecords>740145</numberOfRecords>
+    </dataTable>
+    <dataTable>
+      <entityName>counts_data.csv</entityName>
+      <entityDescription>Counts of individual invertebrates</entityDescription>
+      <physical>
+        <objectName>counts_data.csv</objectName>
+        <size unit="byte">20057315</size>
+        <authentication method="MD5">adf4a66461567917611f48ff1e44e75c</authentication>
+        <dataFormat>
+          <textFormat>
+            <numHeaderLines>1</numHeaderLines>
+            <recordDelimiter>\n</recordDelimiter>
+            <attributeOrientation>column</attributeOrientation>
+            <simpleDelimited>
+              <fieldDelimiter>,</fieldDelimiter>
+              <quoteCharacter>"</quoteCharacter>
+            </simpleDelimited>
+          </textFormat>
+        </dataFormat>
+        <distribution>
+          <online>
+            <url>https://pasta.lternet.edu/package/data/eml/edi/236/1/ec833e83f9128737a16c761b655a9663</url>
+          </online>
+        </distribution>
+      </physical>
+      <attributeList>
+        <attribute>
+          <attributeName>Year</attributeName>
+          <attributeDefinition>Year data was taken</attributeDefinition>
+          <storageType>date</storageType>
+          <measurementScale>
+            <dateTime>
+              <formatString>YYYY</formatString>
+            </dateTime>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>Transect</attributeName>
+          <attributeDefinition>Transect number</attributeDefinition>
+          <storageType>float</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>dimensionless</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>natural</numberType>
+                <bounds>
+                  <minimum exclusive="false">1</minimum>
+                  <maximum exclusive="false">28</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>Level</attributeName>
+          <attributeDefinition>Depth level from transect pin</attributeDefinition>
+          <storageType>float</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>dimensionless</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+                <bounds>
+                  <minimum exclusive="false">-4</minimum>
+                  <maximum exclusive="false">19</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>Replicate</attributeName>
+          <attributeDefinition>Replicate number</attributeDefinition>
+          <storageType>string</storageType>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <textDomain>
+                  <definition>Replicate number</definition>
+                </textDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>Data_taken</attributeName>
+          <attributeDefinition>Whether data was taken for that quadrat</attributeDefinition>
+          <storageType>string</storageType>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <enumeratedDomain>
+                  <codeDefinition>
+                    <code>no</code>
+                    <definition>Data was not taken for quadrant</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>yes</code>
+                    <definition>Data was taken for quadrant</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>NA</code>
+                    <definition>No information for quadrant</definition>
+                  </codeDefinition>
+                </enumeratedDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>Organism</attributeName>
+          <attributeDefinition>Organism in question</attributeDefinition>
+          <storageType>string</storageType>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <textDomain>
+                  <definition>Organism in question</definition>
+                </textDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>Count</attributeName>
+          <attributeDefinition>Count of organism in quadrat</attributeDefinition>
+          <storageType>string</storageType>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <textDomain>
+                  <definition>Count of organism in quadrat</definition>
+                </textDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+        </attribute>
+      </attributeList>
+      <numberOfRecords>489140</numberOfRecords>
+    </dataTable>
+    <dataTable>
+      <entityName>sizes_data.csv</entityName>
+      <entityDescription>Counts of key invertebrates by size classes</entityDescription>
+      <physical>
+        <objectName>sizes_data.csv</objectName>
+        <size unit="byte">7209685</size>
+        <authentication method="MD5">70eac0f17ea4cf6cbac6ec0e6b997e2f</authentication>
+        <dataFormat>
+          <textFormat>
+            <numHeaderLines>1</numHeaderLines>
+            <recordDelimiter>\n</recordDelimiter>
+            <attributeOrientation>column</attributeOrientation>
+            <simpleDelimited>
+              <fieldDelimiter>,</fieldDelimiter>
+              <quoteCharacter>"</quoteCharacter>
+            </simpleDelimited>
+          </textFormat>
+        </dataFormat>
+        <distribution>
+          <online>
+            <url>https://pasta.lternet.edu/package/data/eml/edi/236/1/b91f3448cd2eb4bf20a4d742b6ce9649</url>
+          </online>
+        </distribution>
+      </physical>
+      <attributeList>
+        <attribute>
+          <attributeName>Year</attributeName>
+          <attributeDefinition>Year data was taken</attributeDefinition>
+          <storageType>date</storageType>
+          <measurementScale>
+            <dateTime>
+              <formatString>YYYY</formatString>
+            </dateTime>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>Transect</attributeName>
+          <attributeDefinition>Transect number</attributeDefinition>
+          <storageType>float</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>dimensionless</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>natural</numberType>
+                <bounds>
+                  <minimum exclusive="false">1</minimum>
+                  <maximum exclusive="false">28</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>Level</attributeName>
+          <attributeDefinition>Depth level from transect pin</attributeDefinition>
+          <storageType>float</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>dimensionless</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+                <bounds>
+                  <minimum exclusive="false">-4</minimum>
+                  <maximum exclusive="false">19</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>Replicate</attributeName>
+          <attributeDefinition>Replicate number</attributeDefinition>
+          <storageType>string</storageType>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <textDomain>
+                  <definition>Replicate number</definition>
+                </textDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>Data_taken</attributeName>
+          <attributeDefinition>Whether data was taken for that quadrant</attributeDefinition>
+          <storageType>string</storageType>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <enumeratedDomain>
+                  <codeDefinition>
+                    <code>NA</code>
+                    <definition>No information available</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>no</code>
+                    <definition>Data was not taken for quadrant</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>yes</code>
+                    <definition>Data was taken for quadrant</definition>
+                  </codeDefinition>
+                </enumeratedDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>Organism</attributeName>
+          <attributeDefinition>Organism in question</attributeDefinition>
+          <storageType>string</storageType>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <textDomain>
+                  <definition>Organism in question</definition>
+                </textDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>Size_class</attributeName>
+          <attributeDefinition>Size class in millimeters</attributeDefinition>
+          <storageType>string</storageType>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <textDomain>
+                  <definition>Size class in millimeters</definition>
+                </textDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>Count</attributeName>
+          <attributeDefinition>Count of organism in size class</attributeDefinition>
+          <storageType>string</storageType>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <textDomain>
+                  <definition>Count of organism in size class</definition>
+                </textDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+        </attribute>
+      </attributeList>
+      <numberOfRecords>149911</numberOfRecords>
+    </dataTable>
+    <dataTable>
+      <entityName>notes.csv</entityName>
+      <entityDescription>Notes and comments</entityDescription>
+      <physical>
+        <objectName>notes.csv</objectName>
+        <size unit="byte">343573</size>
+        <authentication method="MD5">ca4de9d636f11a129f0047e603f10004</authentication>
+        <dataFormat>
+          <textFormat>
+            <numHeaderLines>1</numHeaderLines>
+            <recordDelimiter>\n</recordDelimiter>
+            <attributeOrientation>column</attributeOrientation>
+            <simpleDelimited>
+              <fieldDelimiter>,</fieldDelimiter>
+              <quoteCharacter>"</quoteCharacter>
+            </simpleDelimited>
+          </textFormat>
+        </dataFormat>
+        <distribution>
+          <online>
+            <url>https://pasta.lternet.edu/package/data/eml/edi/236/1/3cb478b5ac99619b39b6135c080c7c24</url>
+          </online>
+        </distribution>
+      </physical>
+      <attributeList>
+        <attribute>
+          <attributeName>Year</attributeName>
+          <attributeDefinition>Year data was taken</attributeDefinition>
+          <storageType>date</storageType>
+          <measurementScale>
+            <dateTime>
+              <formatString>YYYY</formatString>
+            </dateTime>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>Transect</attributeName>
+          <attributeDefinition>Transect number</attributeDefinition>
+          <storageType>float</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>dimensionless</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>natural</numberType>
+                <bounds>
+                  <minimum exclusive="false">1</minimum>
+                  <maximum exclusive="false">28</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>Level</attributeName>
+          <attributeDefinition>Depth level from transect pin</attributeDefinition>
+          <storageType>float</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>dimensionless</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+                <bounds>
+                  <minimum exclusive="false">-2</minimum>
+                  <maximum exclusive="false">19</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>Replicate</attributeName>
+          <attributeDefinition>Replicate number</attributeDefinition>
+          <storageType>string</storageType>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <textDomain>
+                  <definition>Replicate number</definition>
+                </textDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>Data_taken</attributeName>
+          <attributeDefinition>Whether data was taken for that quadrant</attributeDefinition>
+          <storageType>string</storageType>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <enumeratedDomain>
+                  <codeDefinition>
+                    <code>yes</code>
+                    <definition>Data was taken for quadrant</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>no</code>
+                    <definition>Data was not taken for quadrant</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>NA</code>
+                    <definition>No information available</definition>
+                  </codeDefinition>
+                </enumeratedDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>Note_header</attributeName>
+          <attributeDefinition>The header under which notes were put down</attributeDefinition>
+          <storageType>string</storageType>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <textDomain>
+                  <definition>The header under which notes were put down</definition>
+                </textDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>Note_value</attributeName>
+          <attributeDefinition>Notes and comments</attributeDefinition>
+          <storageType>string</storageType>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <textDomain>
+                  <definition>Notes and comments</definition>
+                </textDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>Source</attributeName>
+          <attributeDefinition>The subset of data notes and comments came from</attributeDefinition>
+          <storageType>string</storageType>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <textDomain>
+                  <definition>The subset of data notes and comments came from</definition>
+                </textDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+        </attribute>
+      </attributeList>
+      <numberOfRecords>3370</numberOfRecords>
+    </dataTable>
+    <dataTable>
+      <entityName>species_list.csv</entityName>
+      <entityDescription>List of species in dataset with taxonomic information and comments on sampling practice</entityDescription>
+      <physical>
+        <objectName>species_list.csv</objectName>
+        <size unit="byte">20784</size>
+        <authentication method="MD5">dc47d6c28bbc62f66f8d5dcaf61cade8</authentication>
+        <dataFormat>
+          <textFormat>
+            <numHeaderLines>1</numHeaderLines>
+            <recordDelimiter>\n</recordDelimiter>
+            <attributeOrientation>column</attributeOrientation>
+            <simpleDelimited>
+              <fieldDelimiter>,</fieldDelimiter>
+              <quoteCharacter>"</quoteCharacter>
+            </simpleDelimited>
+          </textFormat>
+        </dataFormat>
+        <distribution>
+          <online>
+            <url>https://pasta.lternet.edu/package/data/eml/edi/236/1/bfcd40379e56628a726f7f8915377fd7</url>
+          </online>
+        </distribution>
+      </physical>
+      <attributeList>
+        <attribute>
+          <attributeName>name</attributeName>
+          <attributeDefinition>Organism name as appears in dataset</attributeDefinition>
+          <storageType>string</storageType>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <textDomain>
+                  <definition>Organism name as appears in dataset</definition>
+                </textDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>AphiaID</attributeName>
+          <attributeDefinition>AphiaID from World Register of Marine Species</attributeDefinition>
+          <storageType>float</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>dimensionless</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>natural</numberType>
+                <bounds>
+                  <minimum exclusive="false">793</minimum>
+                  <maximum exclusive="false">494940</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>valid_name</attributeName>
+          <attributeDefinition>Valid name according to WORMS</attributeDefinition>
+          <storageType>string</storageType>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <textDomain>
+                  <definition>Valid name according to WORMS</definition>
+                </textDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>valid_authority</attributeName>
+          <attributeDefinition>Taxonomic authority</attributeDefinition>
+          <storageType>string</storageType>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <textDomain>
+                  <definition>Taxonomic authority</definition>
+                </textDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>kingdom</attributeName>
+          <attributeDefinition>kingdom</attributeDefinition>
+          <storageType>string</storageType>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <textDomain>
+                  <definition>kingdom</definition>
+                </textDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>phylum</attributeName>
+          <attributeDefinition>phylum</attributeDefinition>
+          <storageType>string</storageType>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <textDomain>
+                  <definition>phylum</definition>
+                </textDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>class</attributeName>
+          <attributeDefinition>class</attributeDefinition>
+          <storageType>string</storageType>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <textDomain>
+                  <definition>class</definition>
+                </textDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>order</attributeName>
+          <attributeDefinition>order</attributeDefinition>
+          <storageType>string</storageType>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <textDomain>
+                  <definition>order</definition>
+                </textDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>family</attributeName>
+          <attributeDefinition>family</attributeDefinition>
+          <storageType>string</storageType>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <textDomain>
+                  <definition>family</definition>
+                </textDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>genus</attributeName>
+          <attributeDefinition>genus</attributeDefinition>
+          <storageType>string</storageType>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <textDomain>
+                  <definition>genus</definition>
+                </textDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>ID_confidence</attributeName>
+          <attributeDefinition>the degree of confidence that this organism was ID’ed correctly</attributeDefinition>
+          <storageType>string</storageType>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <enumeratedDomain>
+                  <codeDefinition>
+                    <code>high</code>
+                    <definition>IDs of organism has high confidence</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>medium</code>
+                    <definition>IDs of organism has medium confidence</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>low</code>
+                    <definition>IDs of organism has low confidence - organism is not distinctive or could be easily mistaken for some other</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>#N/A</code>
+                    <definition>This criteria doesn’t apply</definition>
+                  </codeDefinition>
+                </enumeratedDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>comments</attributeName>
+          <attributeDefinition>Relevant comments about the practice of recording this organism</attributeDefinition>
+          <storageType>string</storageType>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <textDomain>
+                  <definition>Relevant comments about the practice of recording this organism</definition>
+                </textDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+        </attribute>
+      </attributeList>
+      <numberOfRecords>145</numberOfRecords>
+    </dataTable>
+    <dataTable>
+      <entityName>transect_info.csv</entityName>
+      <entityDescription>Information on transect sites</entityDescription>
+      <physical>
+        <objectName>transect_info.csv</objectName>
+        <size unit="byte">1211</size>
+        <authentication method="MD5">b6920f794c79c813e574efc9138d862f</authentication>
+        <dataFormat>
+          <textFormat>
+            <numHeaderLines>1</numHeaderLines>
+            <recordDelimiter>\r\n</recordDelimiter>
+            <attributeOrientation>column</attributeOrientation>
+            <simpleDelimited>
+              <fieldDelimiter>,</fieldDelimiter>
+              <quoteCharacter>"</quoteCharacter>
+            </simpleDelimited>
+          </textFormat>
+        </dataFormat>
+        <distribution>
+          <online>
+            <url>https://pasta.lternet.edu/package/data/eml/edi/236/1/29e551611c670b81c4aae9d2a2d82e7b</url>
+          </online>
+        </distribution>
+      </physical>
+      <attributeList>
+        <attribute>
+          <attributeName>Transect</attributeName>
+          <attributeDefinition>Transect number</attributeDefinition>
+          <storageType>float</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>dimensionless</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>natural</numberType>
+                <bounds>
+                  <minimum exclusive="false">1</minimum>
+                  <maximum exclusive="false">28</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>Lat_deg</attributeName>
+          <attributeDefinition>Latitudinal degree</attributeDefinition>
+          <storageType>float</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>dimensionless</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>natural</numberType>
+                <bounds>
+                  <minimum exclusive="false">42</minimum>
+                  <maximum exclusive="false">42</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>Lat_min</attributeName>
+          <attributeDefinition>Latitudinal minute</attributeDefinition>
+          <storageType>float</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>dimensionless</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+                <bounds>
+                  <minimum exclusive="false">59.08</minimum>
+                  <maximum exclusive="false">59.56</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>Long_deg</attributeName>
+          <attributeDefinition>Longitudinal degree</attributeDefinition>
+          <storageType>float</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>dimensionless</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>natural</numberType>
+                <bounds>
+                  <minimum exclusive="false">70</minimum>
+                  <maximum exclusive="false">70</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>Long_min</attributeName>
+          <attributeDefinition>Longitudinal minute</attributeDefinition>
+          <storageType>float</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>dimensionless</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+                <bounds>
+                  <minimum exclusive="false">36.57</minimum>
+                  <maximum exclusive="false">37.11</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>CW_from_north</attributeName>
+          <attributeDefinition>Orientation in degrees clockwise from north</attributeDefinition>
+          <storageType>float</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>dimensionless</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>natural</numberType>
+                <bounds>
+                  <minimum exclusive="false">23</minimum>
+                  <maximum exclusive="false">343</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>Rise_over_run</attributeName>
+          <attributeDefinition>Slope or vertical rise over horizontal run</attributeDefinition>
+          <storageType>float</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>dimensionless</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+                <bounds>
+                  <minimum exclusive="false">0.08</minimum>
+                  <maximum exclusive="false">0.31</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>Fetch_km</attributeName>
+          <attributeDefinition>Distance to nearest landmass</attributeDefinition>
+          <storageType>float</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>kilometer</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+                <bounds>
+                  <minimum exclusive="false">0.93</minimum>
+                  <maximum exclusive="false">6241.24</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>Position</attributeName>
+          <attributeDefinition>Locality with regards to the exposed versus sheltered side on the island</attributeDefinition>
+          <storageType>string</storageType>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <textDomain>
+                  <definition>Locality with regards to the exposed versus sheltered side on the island</definition>
+                </textDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+        </attribute>
+      </attributeList>
+      <numberOfRecords>28</numberOfRecords>
+    </dataTable>
+    <dataTable>
+      <entityName>fucus_asco_max_size.csv</entityName>
+      <entityDescription>Maximum size of two key seaweed groups, Fucus spp. and Ascophyllum nodosum</entityDescription>
+      <physical>
+        <objectName>fucus_asco_max_size.csv</objectName>
+        <size unit="byte">375658</size>
+        <authentication method="MD5">d8b7eeef7e30df9cfb47a87fe901f370</authentication>
+        <dataFormat>
+          <textFormat>
+            <numHeaderLines>1</numHeaderLines>
+            <recordDelimiter>\n</recordDelimiter>
+            <attributeOrientation>column</attributeOrientation>
+            <simpleDelimited>
+              <fieldDelimiter>,</fieldDelimiter>
+              <quoteCharacter>"</quoteCharacter>
+            </simpleDelimited>
+          </textFormat>
+        </dataFormat>
+        <distribution>
+          <online>
+            <url>https://pasta.lternet.edu/package/data/eml/edi/236/1/5d4a86ec59bfc15853dfa15604141e19</url>
+          </online>
+        </distribution>
+      </physical>
+      <attributeList>
+        <attribute>
+          <attributeName>Year</attributeName>
+          <attributeDefinition>Year data was taken</attributeDefinition>
+          <storageType>date</storageType>
+          <measurementScale>
+            <dateTime>
+              <formatString>YYYY</formatString>
+            </dateTime>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>Transect</attributeName>
+          <attributeDefinition>Transect number</attributeDefinition>
+          <storageType>float</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>dimensionless</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+                <bounds>
+                  <minimum exclusive="false">1</minimum>
+                  <maximum exclusive="false">28</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>Level</attributeName>
+          <attributeDefinition>Depth level from transect pin</attributeDefinition>
+          <storageType>float</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>dimensionless</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+                <bounds>
+                  <minimum exclusive="false">-4</minimum>
+                  <maximum exclusive="false">19</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>Replicate</attributeName>
+          <attributeDefinition>Replicate number</attributeDefinition>
+          <storageType>string</storageType>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <textDomain>
+                  <definition>Replicate number</definition>
+                </textDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>Data_taken</attributeName>
+          <attributeDefinition>Whether data was taken for that quadrat</attributeDefinition>
+          <storageType>string</storageType>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <enumeratedDomain>
+                  <codeDefinition>
+                    <code>NA</code>
+                    <definition>No information for quadrant</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>no</code>
+                    <definition>Data was not taken for quadrant</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>yes</code>
+                    <definition>Data was taken for quadrant</definition>
+                  </codeDefinition>
+                </enumeratedDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>Fucus_maxlength</attributeName>
+          <attributeDefinition>Maximum length of any Fucus species in the quadrant</attributeDefinition>
+          <storageType>string</storageType>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <textDomain>
+                  <definition>Maximum length of any Fucus species in the quadrant</definition>
+                </textDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>Fucus_max_species</attributeName>
+          <attributeDefinition>Fucus species of specimen with maximum length</attributeDefinition>
+          <storageType>string</storageType>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <textDomain>
+                  <definition>Fucus species of specimen with maximum length</definition>
+                </textDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>Asco_maxlength</attributeName>
+          <attributeDefinition>Maximum length of Ascophyllum nodosum in quadrant</attributeDefinition>
+          <storageType>string</storageType>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <textDomain>
+                  <definition>Maximum length of Ascophyllum nodosum in quadrant</definition>
+                </textDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>Asco_maxbladders</attributeName>
+          <attributeDefinition>Maximum number of bladders in Ascophyllum nodosum in quadrant</attributeDefinition>
+          <storageType>string</storageType>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <textDomain>
+                  <definition>Maximum number of bladders in Ascophyllum nodosum in quadrant</definition>
+                </textDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+        </attribute>
+      </attributeList>
+      <numberOfRecords>9653</numberOfRecords>
+    </dataTable>
+    <dataTable>
+      <entityName>categories_data.csv</entityName>
+      <entityDescription>Presence/absence on hard to quantify taxa, with some limited abundance information</entityDescription>
+      <physical>
+        <objectName>categories_data.csv</objectName>
+        <size unit="byte">10146081</size>
+        <authentication method="MD5">db320d2bf96a5a1979e862620420d10d</authentication>
+        <dataFormat>
+          <textFormat>
+            <numHeaderLines>1</numHeaderLines>
+            <recordDelimiter>\n</recordDelimiter>
+            <attributeOrientation>column</attributeOrientation>
+            <simpleDelimited>
+              <fieldDelimiter>,</fieldDelimiter>
+              <quoteCharacter>"</quoteCharacter>
+            </simpleDelimited>
+          </textFormat>
+        </dataFormat>
+        <distribution>
+          <online>
+            <url>https://pasta.lternet.edu/package/data/eml/edi/236/1/418325219b945bcf1af897a1a8fec2bf</url>
+          </online>
+        </distribution>
+      </physical>
+      <attributeList>
+        <attribute>
+          <attributeName>Year</attributeName>
+          <attributeDefinition>Year data was taken</attributeDefinition>
+          <storageType>date</storageType>
+          <measurementScale>
+            <dateTime>
+              <formatString>YYYY</formatString>
+            </dateTime>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>Transect</attributeName>
+          <attributeDefinition>Transect number</attributeDefinition>
+          <storageType>float</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>dimensionless</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>natural</numberType>
+                <bounds>
+                  <minimum exclusive="false">1</minimum>
+                  <maximum exclusive="false">28</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>Level</attributeName>
+          <attributeDefinition>Depth level from transect pin</attributeDefinition>
+          <storageType>float</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>dimensionless</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>integer</numberType>
+                <bounds>
+                  <minimum exclusive="false">-4</minimum>
+                  <maximum exclusive="false">99</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>Replicate</attributeName>
+          <attributeDefinition>Replicate number</attributeDefinition>
+          <storageType>string</storageType>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <textDomain>
+                  <definition>Replicate number</definition>
+                </textDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>Data_taken</attributeName>
+          <attributeDefinition>Whether data was taken for that quadrat</attributeDefinition>
+          <storageType>string</storageType>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <enumeratedDomain>
+                  <codeDefinition>
+                    <code>no</code>
+                    <definition>Data was not taken for quadrant</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>yes</code>
+                    <definition>Data was taken for quadrant</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>NA</code>
+                    <definition>No information for quadrant</definition>
+                  </codeDefinition>
+                </enumeratedDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>Organism</attributeName>
+          <attributeDefinition>Organism in question</attributeDefinition>
+          <storageType>string</storageType>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <textDomain>
+                  <definition>Organism in question</definition>
+                </textDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>Category</attributeName>
+          <attributeDefinition>Generally number of squares out of 16 organism was present in quadrant</attributeDefinition>
+          <storageType>string</storageType>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <textDomain>
+                  <definition>Generally number of squares out of 16 organism was present in quadrant</definition>
+                </textDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+        </attribute>
+      </attributeList>
+      <numberOfRecords>250724</numberOfRecords>
+    </dataTable>
+    <otherEntity>
+      <entityName>sml_intertidal_documentation.zip</entityName>
+      <entityDescription>Contains detailed sampling protocol document, documentation of data quality, and acknowledgements</entityDescription>
+      <physical>
+        <objectName>sml_intertidal_documentation.zip</objectName>
+        <size unit="bytes">NA</size>
+        <authentication method="MD5">fd81878803d476ee5abbe6c86a543baf</authentication>
+        <dataFormat>
+          <externallyDefinedFormat>
+            <formatName>zip directory</formatName>
+          </externallyDefinedFormat>
+        </dataFormat>
+        <distribution>
+          <online>
+            <url>https://pasta.lternet.edu/package/data/eml/edi/236/1/5b49d857d1b57cc6c6e57c0d0a649476</url>
+          </online>
+        </distribution>
+      </physical>
+      <entityType>zip directory</entityType>
+    </otherEntity>
+  </dataset>
+</eml:eml>

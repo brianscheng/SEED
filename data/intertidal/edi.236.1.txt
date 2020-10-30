@@ -1,0 +1,1469 @@
+
+  
+    
+      uid=EDI,o=EDI,dc=edirepository,dc=org
+      all
+    
+    
+      uid=anguyen,o=EDI,dc=edirepository,dc=org
+      all
+    
+    
+      public
+      read
+    
+  
+  
+    doi:10.6073/pasta/b8f52444f86fbefe97c5bb40673e02d5
+    Long-term Rocky Intertidal Monitoring on Appledore Island, Maine, 1982-2017
+    
+       Shoals Marine Laboratory
+      University of New Hampshire & Cornell University
+      shoals.lab@unh.edu
+    
+    
+      An T Nguyen
+      Environmental Data Initiative
+      annguyen@bennington.edu
+      Data Archiver
+    
+    2018-08-18
+    
+      
+  Shoals Marine Laboratory, jointly operated by Cornell University and
+  the University of New Hampshire, has conducted annual surveys of
+  intertidal biota on Appledore Island since 1972 and on Star Island in
+  1970-72. The primary goal of the survey is to train undergraduate
+  university students in observation, species identification, survey
+  methodology, data collection and management, and science
+  communication. The secondary, but equally important, goal is to
+  generate a long-term record of intertidal biota found on Appledore
+  Island, Maine USA. This published dataset includes species presence,
+  abundance, size, and distribution since 1985, the earliest year full
+  records were available for digital archive.
+
+    
+    
+      intertidal
+      macroalgae
+      algae
+      invertebrate
+      LTER
+    
+    
+      
+  We would like to acknowledge the contributions of key personnel who
+  has significantly contributed to the project and to Shoals Marine Lab
+  more generally. Please see sml_rocky_intertidal_acknowledgements.pdf
+  in the accompanying sml_rocky_intertidal_documentation.zip file.
+
+    
+    
+      
+  This information is released under the Creative Commons license -
+  Attribution - CC BY (https://creativecommons.org/licenses/by/4.0/).
+  The consumer of these data ("Data User" herein) is required
+  to cite it appropriately in any publication that results from its use.
+  The Data User should realize that these data may be actively used by
+  others for ongoing research and that coordination may be necessary to
+  prevent duplicate publication. The Data User is urged to contact the
+  authors of these data if any questions about methodology or results
+  occur. Where appropriate, the Data User is encouraged to consider
+  collaboration or co-authorship with the authors. The Data User should
+  realize that misinterpretation of data may occur if used out of
+  context of the original study. While substantial efforts are made to
+  ensure the accuracy of data and associated documentation, complete
+  accuracy of data sets cannot be guaranteed. All data are made
+  available "as is." The Data User should be aware, however,
+  that data are updated periodically and it is the responsibility of the
+  Data User to check for new versions of the data. The data authors and
+  the repository where these data were obtained shall not be liable for
+  damages resulting from any use or misinterpretation of the data. Thank
+  you.
+
+    
+    
+      
+        Appledore Island, Maine, United States of America
+        
+          -70.620518
+          -70.608835
+          42.997245
+          42.981610
+        
+      
+      
+        
+          
+            1982
+          
+          
+            2017
+          
+        
+      
+    
+    
+      ongoing
+    
+    
+       Shoals Marine Laboratory
+      University of New Hampshire & Cornell University
+      shoals.lab@unh.edu
+    
+    
+      
+        
+          
+  Sampling was conducted using 20 x 20 cm square quadrats, from the low
+  to high intertidal zone, at 0.33 meter (1.0 foot) intervals in
+  vertical height from mean low water at each of several transects
+  around the island. A comprehensive protocol is provided in a separate
+  file. There have been modifications to the protocol over time, which
+  are noted in the provided data quality document. Please review these
+  documents in the .zip archive before making use of this dataset.
+
+        
+      
+    
+    
+      percent_cover_data.csv
+      Percent cover data, algae and sessile invertebrates
+      
+        percent_cover_data.csv
+        33827607
+        1a2d152432f0d191becd5bb1877a5e24
+        
+          
+            1
+            \n
+            column
+            
+              ,
+              "
+            
+          
+        
+        
+          
+            https://pasta.lternet.edu/package/data/eml/edi/236/1/8a3bed7ff7c534c5a5301e507118e880
+          
+        
+      
+      
+        
+          Year
+          Year data was taken
+          date
+          
+            
+              YYYY
+            
+          
+        
+        
+          Transect
+          Transect number
+          float
+          
+            
+              
+                dimensionless
+              
+              
+                natural
+                
+                  1
+                  28
+                
+              
+            
+          
+        
+        
+          Level
+          Depth level from transect pin
+          float
+          
+            
+              
+                dimensionless
+              
+              
+                real
+                
+                  -4
+                  19
+                
+              
+            
+          
+        
+        
+          Replicate
+          Replicate number
+          string
+          
+            
+              
+                
+                  Replicate number
+                
+              
+            
+          
+        
+        
+          Data_taken
+          Whether data was taken for that quadrant
+          string
+          
+            
+              
+                
+                  
+                    no
+                    Data was not taken for quadrant
+                  
+                  
+                    yes
+                    Data was taken for quadrant
+                  
+                
+              
+            
+          
+        
+        
+          Organism
+          Organism in question
+          string
+          
+            
+              
+                
+                  Organism in question
+                
+              
+            
+          
+        
+        
+          Percent_cover
+          Percent cover of quadrat value
+          string
+          
+            
+              
+                
+                  Percent cover of quadrat value
+                
+              
+            
+          
+        
+      
+      740145
+    
+    
+      counts_data.csv
+      Counts of individual invertebrates
+      
+        counts_data.csv
+        20057315
+        adf4a66461567917611f48ff1e44e75c
+        
+          
+            1
+            \n
+            column
+            
+              ,
+              "
+            
+          
+        
+        
+          
+            https://pasta.lternet.edu/package/data/eml/edi/236/1/ec833e83f9128737a16c761b655a9663
+          
+        
+      
+      
+        
+          Year
+          Year data was taken
+          date
+          
+            
+              YYYY
+            
+          
+        
+        
+          Transect
+          Transect number
+          float
+          
+            
+              
+                dimensionless
+              
+              
+                natural
+                
+                  1
+                  28
+                
+              
+            
+          
+        
+        
+          Level
+          Depth level from transect pin
+          float
+          
+            
+              
+                dimensionless
+              
+              
+                real
+                
+                  -4
+                  19
+                
+              
+            
+          
+        
+        
+          Replicate
+          Replicate number
+          string
+          
+            
+              
+                
+                  Replicate number
+                
+              
+            
+          
+        
+        
+          Data_taken
+          Whether data was taken for that quadrat
+          string
+          
+            
+              
+                
+                  
+                    no
+                    Data was not taken for quadrant
+                  
+                  
+                    yes
+                    Data was taken for quadrant
+                  
+                  
+                    NA
+                    No information for quadrant
+                  
+                
+              
+            
+          
+        
+        
+          Organism
+          Organism in question
+          string
+          
+            
+              
+                
+                  Organism in question
+                
+              
+            
+          
+        
+        
+          Count
+          Count of organism in quadrat
+          string
+          
+            
+              
+                
+                  Count of organism in quadrat
+                
+              
+            
+          
+        
+      
+      489140
+    
+    
+      sizes_data.csv
+      Counts of key invertebrates by size classes
+      
+        sizes_data.csv
+        7209685
+        70eac0f17ea4cf6cbac6ec0e6b997e2f
+        
+          
+            1
+            \n
+            column
+            
+              ,
+              "
+            
+          
+        
+        
+          
+            https://pasta.lternet.edu/package/data/eml/edi/236/1/b91f3448cd2eb4bf20a4d742b6ce9649
+          
+        
+      
+      
+        
+          Year
+          Year data was taken
+          date
+          
+            
+              YYYY
+            
+          
+        
+        
+          Transect
+          Transect number
+          float
+          
+            
+              
+                dimensionless
+              
+              
+                natural
+                
+                  1
+                  28
+                
+              
+            
+          
+        
+        
+          Level
+          Depth level from transect pin
+          float
+          
+            
+              
+                dimensionless
+              
+              
+                real
+                
+                  -4
+                  19
+                
+              
+            
+          
+        
+        
+          Replicate
+          Replicate number
+          string
+          
+            
+              
+                
+                  Replicate number
+                
+              
+            
+          
+        
+        
+          Data_taken
+          Whether data was taken for that quadrant
+          string
+          
+            
+              
+                
+                  
+                    NA
+                    No information available
+                  
+                  
+                    no
+                    Data was not taken for quadrant
+                  
+                  
+                    yes
+                    Data was taken for quadrant
+                  
+                
+              
+            
+          
+        
+        
+          Organism
+          Organism in question
+          string
+          
+            
+              
+                
+                  Organism in question
+                
+              
+            
+          
+        
+        
+          Size_class
+          Size class in millimeters
+          string
+          
+            
+              
+                
+                  Size class in millimeters
+                
+              
+            
+          
+        
+        
+          Count
+          Count of organism in size class
+          string
+          
+            
+              
+                
+                  Count of organism in size class
+                
+              
+            
+          
+        
+      
+      149911
+    
+    
+      notes.csv
+      Notes and comments
+      
+        notes.csv
+        343573
+        ca4de9d636f11a129f0047e603f10004
+        
+          
+            1
+            \n
+            column
+            
+              ,
+              "
+            
+          
+        
+        
+          
+            https://pasta.lternet.edu/package/data/eml/edi/236/1/3cb478b5ac99619b39b6135c080c7c24
+          
+        
+      
+      
+        
+          Year
+          Year data was taken
+          date
+          
+            
+              YYYY
+            
+          
+        
+        
+          Transect
+          Transect number
+          float
+          
+            
+              
+                dimensionless
+              
+              
+                natural
+                
+                  1
+                  28
+                
+              
+            
+          
+        
+        
+          Level
+          Depth level from transect pin
+          float
+          
+            
+              
+                dimensionless
+              
+              
+                real
+                
+                  -2
+                  19
+                
+              
+            
+          
+        
+        
+          Replicate
+          Replicate number
+          string
+          
+            
+              
+                
+                  Replicate number
+                
+              
+            
+          
+        
+        
+          Data_taken
+          Whether data was taken for that quadrant
+          string
+          
+            
+              
+                
+                  
+                    yes
+                    Data was taken for quadrant
+                  
+                  
+                    no
+                    Data was not taken for quadrant
+                  
+                  
+                    NA
+                    No information available
+                  
+                
+              
+            
+          
+        
+        
+          Note_header
+          The header under which notes were put down
+          string
+          
+            
+              
+                
+                  The header under which notes were put down
+                
+              
+            
+          
+        
+        
+          Note_value
+          Notes and comments
+          string
+          
+            
+              
+                
+                  Notes and comments
+                
+              
+            
+          
+        
+        
+          Source
+          The subset of data notes and comments came from
+          string
+          
+            
+              
+                
+                  The subset of data notes and comments came from
+                
+              
+            
+          
+        
+      
+      3370
+    
+    
+      species_list.csv
+      List of species in dataset with taxonomic information and comments on sampling practice
+      
+        species_list.csv
+        20784
+        dc47d6c28bbc62f66f8d5dcaf61cade8
+        
+          
+            1
+            \n
+            column
+            
+              ,
+              "
+            
+          
+        
+        
+          
+            https://pasta.lternet.edu/package/data/eml/edi/236/1/bfcd40379e56628a726f7f8915377fd7
+          
+        
+      
+      
+        
+          name
+          Organism name as appears in dataset
+          string
+          
+            
+              
+                
+                  Organism name as appears in dataset
+                
+              
+            
+          
+        
+        
+          AphiaID
+          AphiaID from World Register of Marine Species
+          float
+          
+            
+              
+                dimensionless
+              
+              
+                natural
+                
+                  793
+                  494940
+                
+              
+            
+          
+        
+        
+          valid_name
+          Valid name according to WORMS
+          string
+          
+            
+              
+                
+                  Valid name according to WORMS
+                
+              
+            
+          
+        
+        
+          valid_authority
+          Taxonomic authority
+          string
+          
+            
+              
+                
+                  Taxonomic authority
+                
+              
+            
+          
+        
+        
+          kingdom
+          kingdom
+          string
+          
+            
+              
+                
+                  kingdom
+                
+              
+            
+          
+        
+        
+          phylum
+          phylum
+          string
+          
+            
+              
+                
+                  phylum
+                
+              
+            
+          
+        
+        
+          class
+          class
+          string
+          
+            
+              
+                
+                  class
+                
+              
+            
+          
+        
+        
+          order
+          order
+          string
+          
+            
+              
+                
+                  order
+                
+              
+            
+          
+        
+        
+          family
+          family
+          string
+          
+            
+              
+                
+                  family
+                
+              
+            
+          
+        
+        
+          genus
+          genus
+          string
+          
+            
+              
+                
+                  genus
+                
+              
+            
+          
+        
+        
+          ID_confidence
+          the degree of confidence that this organism was ID’ed correctly
+          string
+          
+            
+              
+                
+                  
+                    high
+                    IDs of organism has high confidence
+                  
+                  
+                    medium
+                    IDs of organism has medium confidence
+                  
+                  
+                    low
+                    IDs of organism has low confidence - organism is not distinctive or could be easily mistaken for some other
+                  
+                  
+                    #N/A
+                    This criteria doesn’t apply
+                  
+                
+              
+            
+          
+        
+        
+          comments
+          Relevant comments about the practice of recording this organism
+          string
+          
+            
+              
+                
+                  Relevant comments about the practice of recording this organism
+                
+              
+            
+          
+        
+      
+      145
+    
+    
+      transect_info.csv
+      Information on transect sites
+      
+        transect_info.csv
+        1211
+        b6920f794c79c813e574efc9138d862f
+        
+          
+            1
+            \r\n
+            column
+            
+              ,
+              "
+            
+          
+        
+        
+          
+            https://pasta.lternet.edu/package/data/eml/edi/236/1/29e551611c670b81c4aae9d2a2d82e7b
+          
+        
+      
+      
+        
+          Transect
+          Transect number
+          float
+          
+            
+              
+                dimensionless
+              
+              
+                natural
+                
+                  1
+                  28
+                
+              
+            
+          
+        
+        
+          Lat_deg
+          Latitudinal degree
+          float
+          
+            
+              
+                dimensionless
+              
+              
+                natural
+                
+                  42
+                  42
+                
+              
+            
+          
+        
+        
+          Lat_min
+          Latitudinal minute
+          float
+          
+            
+              
+                dimensionless
+              
+              
+                real
+                
+                  59.08
+                  59.56
+                
+              
+            
+          
+        
+        
+          Long_deg
+          Longitudinal degree
+          float
+          
+            
+              
+                dimensionless
+              
+              
+                natural
+                
+                  70
+                  70
+                
+              
+            
+          
+        
+        
+          Long_min
+          Longitudinal minute
+          float
+          
+            
+              
+                dimensionless
+              
+              
+                real
+                
+                  36.57
+                  37.11
+                
+              
+            
+          
+        
+        
+          CW_from_north
+          Orientation in degrees clockwise from north
+          float
+          
+            
+              
+                dimensionless
+              
+              
+                natural
+                
+                  23
+                  343
+                
+              
+            
+          
+        
+        
+          Rise_over_run
+          Slope or vertical rise over horizontal run
+          float
+          
+            
+              
+                dimensionless
+              
+              
+                real
+                
+                  0.08
+                  0.31
+                
+              
+            
+          
+        
+        
+          Fetch_km
+          Distance to nearest landmass
+          float
+          
+            
+              
+                kilometer
+              
+              
+                real
+                
+                  0.93
+                  6241.24
+                
+              
+            
+          
+        
+        
+          Position
+          Locality with regards to the exposed versus sheltered side on the island
+          string
+          
+            
+              
+                
+                  Locality with regards to the exposed versus sheltered side on the island
+                
+              
+            
+          
+        
+      
+      28
+    
+    
+      fucus_asco_max_size.csv
+      Maximum size of two key seaweed groups, Fucus spp. and Ascophyllum nodosum
+      
+        fucus_asco_max_size.csv
+        375658
+        d8b7eeef7e30df9cfb47a87fe901f370
+        
+          
+            1
+            \n
+            column
+            
+              ,
+              "
+            
+          
+        
+        
+          
+            https://pasta.lternet.edu/package/data/eml/edi/236/1/5d4a86ec59bfc15853dfa15604141e19
+          
+        
+      
+      
+        
+          Year
+          Year data was taken
+          date
+          
+            
+              YYYY
+            
+          
+        
+        
+          Transect
+          Transect number
+          float
+          
+            
+              
+                dimensionless
+              
+              
+                real
+                
+                  1
+                  28
+                
+              
+            
+          
+        
+        
+          Level
+          Depth level from transect pin
+          float
+          
+            
+              
+                dimensionless
+              
+              
+                real
+                
+                  -4
+                  19
+                
+              
+            
+          
+        
+        
+          Replicate
+          Replicate number
+          string
+          
+            
+              
+                
+                  Replicate number
+                
+              
+            
+          
+        
+        
+          Data_taken
+          Whether data was taken for that quadrat
+          string
+          
+            
+              
+                
+                  
+                    NA
+                    No information for quadrant
+                  
+                  
+                    no
+                    Data was not taken for quadrant
+                  
+                  
+                    yes
+                    Data was taken for quadrant
+                  
+                
+              
+            
+          
+        
+        
+          Fucus_maxlength
+          Maximum length of any Fucus species in the quadrant
+          string
+          
+            
+              
+                
+                  Maximum length of any Fucus species in the quadrant
+                
+              
+            
+          
+        
+        
+          Fucus_max_species
+          Fucus species of specimen with maximum length
+          string
+          
+            
+              
+                
+                  Fucus species of specimen with maximum length
+                
+              
+            
+          
+        
+        
+          Asco_maxlength
+          Maximum length of Ascophyllum nodosum in quadrant
+          string
+          
+            
+              
+                
+                  Maximum length of Ascophyllum nodosum in quadrant
+                
+              
+            
+          
+        
+        
+          Asco_maxbladders
+          Maximum number of bladders in Ascophyllum nodosum in quadrant
+          string
+          
+            
+              
+                
+                  Maximum number of bladders in Ascophyllum nodosum in quadrant
+                
+              
+            
+          
+        
+      
+      9653
+    
+    
+      categories_data.csv
+      Presence/absence on hard to quantify taxa, with some limited abundance information
+      
+        categories_data.csv
+        10146081
+        db320d2bf96a5a1979e862620420d10d
+        
+          
+            1
+            \n
+            column
+            
+              ,
+              "
+            
+          
+        
+        
+          
+            https://pasta.lternet.edu/package/data/eml/edi/236/1/418325219b945bcf1af897a1a8fec2bf
+          
+        
+      
+      
+        
+          Year
+          Year data was taken
+          date
+          
+            
+              YYYY
+            
+          
+        
+        
+          Transect
+          Transect number
+          float
+          
+            
+              
+                dimensionless
+              
+              
+                natural
+                
+                  1
+                  28
+                
+              
+            
+          
+        
+        
+          Level
+          Depth level from transect pin
+          float
+          
+            
+              
+                dimensionless
+              
+              
+                integer
+                
+                  -4
+                  99
+                
+              
+            
+          
+        
+        
+          Replicate
+          Replicate number
+          string
+          
+            
+              
+                
+                  Replicate number
+                
+              
+            
+          
+        
+        
+          Data_taken
+          Whether data was taken for that quadrat
+          string
+          
+            
+              
+                
+                  
+                    no
+                    Data was not taken for quadrant
+                  
+                  
+                    yes
+                    Data was taken for quadrant
+                  
+                  
+                    NA
+                    No information for quadrant
+                  
+                
+              
+            
+          
+        
+        
+          Organism
+          Organism in question
+          string
+          
+            
+              
+                
+                  Organism in question
+                
+              
+            
+          
+        
+        
+          Category
+          Generally number of squares out of 16 organism was present in quadrant
+          string
+          
+            
+              
+                
+                  Generally number of squares out of 16 organism was present in quadrant
+                
+              
+            
+          
+        
+      
+      250724
+    
+    
+      sml_intertidal_documentation.zip
+      Contains detailed sampling protocol document, documentation of data quality, and acknowledgements
+      
+        sml_intertidal_documentation.zip
+        NA
+        fd81878803d476ee5abbe6c86a543baf
+        
+          
+            zip directory
+          
+        
+        
+          
+            https://pasta.lternet.edu/package/data/eml/edi/236/1/5b49d857d1b57cc6c6e57c0d0a649476
+          
+        
+      
+      zip directory
+    
+  
