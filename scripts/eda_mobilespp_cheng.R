@@ -21,6 +21,11 @@ summary(data$Count)     #factor, lots of numbers here, but then others and NAs, 
 
 #data wrangling
 data2<-  filter(data, Count != "p", Count != "sp100", Count != "casings present")
+data2$Count2<-as.numeric(as.character(data2$Count))
+str(data2)
+test<-as.numeric(as.character("p")) #classifies as NA?
+class(test)
+test
 
 #questions
 count.list<-unique(data2$Count)
