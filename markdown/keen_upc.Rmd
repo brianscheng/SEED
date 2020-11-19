@@ -22,6 +22,7 @@ library(broom)
 library(tidyr)
 
 upc <- read_csv("data/keen/keen_cover.csv") %>%
+  mutate(TRANSECT = gsub("^8 Ball", "Magic 8 Ball", TRANSECT)) %>%
   tidyr::drop_na(SPECIES) %>%
   tidyr::drop_na(SITE) %>%
   tidyr::drop_na(TRANSECT) %>%
@@ -33,7 +34,7 @@ upc <- read_csv("data/keen/keen_cover.csv") %>%
   # filter(!(SP_CODE %in% c("CUFR", "CYLU",
   #                         "MYOC", "MYSC",
   #                         "ULSP", "TAAD"))) %>% #too few obs
-  complete(YEAR, SITE, SP_CODE, TRANSECT,
+  complete(YEAR, nesting(SITE, TRANSECT), SP_CODE,
            fill = list(PERCENT_COVER = 0)) %>% #because data is long
   group_by(SP_CODE) %>% #fix NAs creates
   mutate(SPECIES = na.omit(unique(SPECIES)),) %>%
@@ -82,7 +83,7 @@ generate_output <- function(adf){
   
   tseries_plot(adf) %>% print()
 
-  if(sum(adf$PERCENT_COVER>5) > 10){
+  if(sum(adf$PERCENT_COVER>3) > 15){
   tseries_fun(adf) %>%
     car::Anova(test.statistic  = "Chisq") %>%
     tidy() %>%

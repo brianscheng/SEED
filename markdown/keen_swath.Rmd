@@ -17,7 +17,8 @@ library(dplyr)
 library(readr)
 library(purrr)
 library(ggplot2)
-library(glmmTMB)
+#library(glmmTMB)
+library(lme4)
 library(broom.mixed)
 library(tidyr)
 
@@ -27,8 +28,8 @@ swath <- read_csv("data/keen/keen_swath.csv") %>%
   filter(!(SP_CODE %in% c("CUFR", "CYLU",
                           "MYOC", "MYSC",
                           "ULSP", "TAAD"))) %>% #too few obs
-  complete(YEAR, SITE, SP_CODE, 
-           TRANSECT, SIDE, QUAD,
+  complete(YEAR, nesting(SITE, 
+           TRANSECT, SIDE, QUAD), SP_CODE,
            fill = list(COUNT = 0)) %>% #because data is long
   group_by(SP_CODE) %>% #fix NAs creates
   mutate(SPECIES = na.omit(unique(SPECIES)),
@@ -68,10 +69,11 @@ tseries_plot <- function(adf){
 }
 
 tseries_fun <- function(adf){
-  glmmTMB(COUNT ~ YEAR * SITE + (1|TRANSECT),
-               data = adf,
-               family = gaussian)
-  
+  # glmmTMB(COUNT ~ YEAR * SITE + (1|TRANSECT),
+  #              data = adf,
+               # family = gaussian)
+  lmer(COUNT ~ YEAR * SITE + (1|TRANSECT),
+               data = adf)
 }
 
 generate_output <- function(adf){

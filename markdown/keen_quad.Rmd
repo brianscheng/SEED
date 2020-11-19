@@ -44,8 +44,8 @@ quad <- quad %>%
                            "COF", "DEVI" #better in Points
                            ))) %>% #too few obs
   select(-NETWORK, -PI) %>%
-  complete(YEAR, SITE, SP_CODE, 
-           TRANSECT, SIDE, QUAD,
+  complete(YEAR, nesting(SITE, 
+           TRANSECT, SIDE, QUAD), SP_CODE,
            fill = list(COUNT = 0)) %>% #because data is long
  
    group_by(SP_CODE) %>% #fix NAs creates
