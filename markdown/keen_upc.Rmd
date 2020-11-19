@@ -17,8 +17,8 @@ library(dplyr)
 library(readr)
 library(purrr)
 library(ggplot2)
-library(glmmTMB)
-library(broom.mixed)
+library(betareg)
+library(broom)
 library(tidyr)
 
 upc <- read_csv("data/keen/keen_cover.csv") %>%
@@ -72,9 +72,8 @@ tseries_plot <- function(adf){
 }
 
 tseries_fun <- function(adf){
-  glmmTMB(PERCENT_COVER/100+0.001 ~ YEAR * SITE,
-               data = adf,
-               family = beta_family())
+  betareg(I(PERCENT_COVER/100+0.001) ~ YEAR * SITE,
+               data = adf)
   
 }
 
@@ -83,7 +82,7 @@ generate_output <- function(adf){
   
   tseries_plot(adf) %>% print()
 
-  if(sum(adf$PERCENT_COVER>10) > 15){
+  if(sum(adf$PERCENT_COVER>5) > 10){
   tseries_fun(adf) %>%
     car::Anova(test.statistic  = "Chisq") %>%
     tidy() %>%
