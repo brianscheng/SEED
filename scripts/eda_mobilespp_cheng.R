@@ -24,9 +24,6 @@ length(which(data$Count=="sp100"))               #one occurrence
 length(which(data$Count=="casings present"))     #one occurrence
 length(which(data$Count=="0.5")) #one occurrence #one occurrence
 
-count.list<-unique(data$Count)
-write.csv(count.list, "unique_counts.csv")
-
 #data wrangling
 data2<-  filter(data, Count != "p", Count != "sp100", Count != "casings present") #unsure why data2 is returning 450150 rows?
 data2$Count2<-as.numeric(as.character(data2$Count))
@@ -46,7 +43,8 @@ count.list
 #L. littorea, M. edulis, S. balanoides, N. lapillus, T. testudinalis, L. obtusata not declining
 #focal mobile species
 data3 <-filter(data2, Organism == "Nucella lapillus"| Organism == "Littorina littorea" |
-                 Organism == "Tectura testudinalis" | Organism == "Littorina obtusata")
+                 Organism == "Tectura testudinalis" | Organism == "Littorina obtusata" |
+                 Organism == "Mytilus edulis" | Organism == "Semibalanus balanoides")
 data3$Organism<-factor(data3$Organism)
 
 mean         = t(tapply(data3$Count2, list(data3$Organism,factor(data3$Year)), mean))
@@ -69,7 +67,7 @@ plot1<-ggplot(summary,(aes(x=Year,y=mean)))+geom_point()+geom_errorbar(aes(ymin=
 plot1
 
 ppi=300 #define a pixels per inch term
-png(here("figures/mobile_spp.png"),width=8*ppi, height=16*ppi, res=ppi) #define your png file
+png(here("figures/mobile_foundation_spp.png"),width=8*ppi, height=16*ppi, res=ppi) #define your png file
 plot1
 dev.off()
 
