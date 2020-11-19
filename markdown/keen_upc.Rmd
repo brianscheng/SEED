@@ -83,7 +83,7 @@ generate_output <- function(adf){
   
   tseries_plot(adf) %>% print()
 
-  if(sum(adf$PERCENT_COVER>3) > 15){
+  if(sum(adf$PERCENT_COVER>3) > 2){
   tseries_fun(adf) %>%
     car::Anova(test.statistic  = "Chisq") %>%
     tidy() %>%
