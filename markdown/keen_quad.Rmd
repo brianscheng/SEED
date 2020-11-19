@@ -1,0 +1,115 @@
+---
+title: "Trends in KEEN QUAD Data"
+author: "Jarrett Byrnes"
+date: "10/29/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_knit$set(root.dir = here::here())
+```
+
+# What species are in the quad data?
+
+```{r dat, echo = FALSE, warning = FALSE, message = FALSE}
+library(dplyr)
+library(readr)
+library(purrr)
+library(ggplot2)
+library(glmmTMB)
+library(broom.mixed)
+library(tidyr)
+
+quad <- read_csv("data/keen/keen_quads.csv") %>%
+  tidyr::drop_na(SPECIES) %>%
+  mutate(COMMON.NAME = ifelse(SP_CODE == "SLJ", "Juvenile Sugar Kelp", COMMON.NAME),
+         COMMON.NAME = ifelse(SP_CODE == "BLD", "Unid. Juv. Kelp Blade", COMMON.NAME),
+         COMMON.NAME = ifelse(SP_CODE == "SADE", "Oarweed", COMMON.NAME),
+         COMMON.NAME = ifelse(SP_CODE == "AGJ", "Juv. Shotgun Kelp", COMMON.NAME),
+         )
+
+quad <- quad %>%
+ # filter(is.na(SIZE) | SIZE == "<10cm") %>%
+   filter(!(SP_CODE %in% c("ALES", "ASNO", "ASDI", "BLD",
+                           "TAAD", "LADI", "MESE", "PLMA",
+                           "ULSP", "URFE",
+                           "ASFOS", "ASFO", #better in swath
+                           "ASRU", "ASRUS", #better in swath
+                           "BOEC", "BOOV", #better in swath
+                           "BUUN", "BOOV", #better in swath
+                           "CABO", "CABS", #better in swath
+                           "CAIR", "CAIRS", #better in swath
+                           "CAMS", 
+                           "COF", "DEVI" #better in Points
+                           ))) %>% #too few obs
+  select(-NETWORK, -PI) %>%
+  complete(YEAR, SITE, SP_CODE, 
+           TRANSECT, SIDE, QUAD,
+           fill = list(COUNT = 0)) %>% #because data is long
+ 
+   group_by(SP_CODE) %>% #fix NAs creates
+   mutate(SPECIES = na.omit(unique(SPECIES)),
+          COMMON.NAME = na.omit(unique(COMMON.NAME))) %>%
+   ungroup()
+
+knitr::kable(quad %>%
+               select(SP_CODE, COMMON.NAME, SPECIES) %>%
+               group_by(SP_CODE, COMMON.NAME, SPECIES) %>% 
+               slice(1L) %>% 
+               ungroup(),
+             "html") %>%
+  kableExtra::kable_styling()
+```
+
+# Let's Plot Trends
+Here are some functions we'll apply to each species. I'll then fit mixed models with all of them using   
+
+<center>COUNT ~ YEAR * SITE + (1|TRANSECT)</center>
+
+with a gaussian error. Note, it's count, so, I could use Poisson, but, that needs to be way more tuned to each model - this should be fine for a first cut?
+
+Here's how we'll do it:
+
+```{r, echo = TRUE}
+tseries_plot <- function(adf){
+  
+  ggplot(adf,
+         aes(y = COUNT, x = YEAR,
+             color = TRANSECT)) +
+    stat_summary(fun.data = mean_se) +
+    stat_summary(fun.data = mean_se, geom = "line") +
+    facet_wrap(~SITE, nrow = 2) +
+    labs(color = "Transect", 
+         y = "Count per sq m ± SE",  x = "Year",
+         title = adf$SPECIES[1])
+}
+
+tseries_fun <- function(adf){
+  glmmTMB(COUNT ~ YEAR * SITE + (1|TRANSECT),
+               data = adf,
+               family = gaussian)
+  
+}
+
+generate_output <- function(adf){
+  cat(paste0("## ", adf$SP_CODE[1], " ", adf$SPECIES[1], "  \n<br>"))
+  
+  tseries_plot(adf) %>% print()
+  
+  # tseries_fun(adf) %>% 
+  #   car::Anova(test.statistic  = "Chisq") %>% 
+  #   tidy() %>%
+  #   knitr::kable("html", digits = 3) %>% 
+  #   kableExtra::kable_styling() %>%
+  #   print
+  # 
+  cat("\n\n")
+}
+```
+
+Now let's `purrr::walk()` through the whole shebang.
+
+```{r, echo = TRUE, results = "asis", warning = FALSE}
+walk(split(quad, quad$SP_CODE), generate_output)
+```

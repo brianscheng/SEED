@@ -1,0 +1,103 @@
+---
+title: "Trends in KEEN Point Count Data"
+author: "Jarrett Byrnes"
+date: "10/29/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_knit$set(root.dir = here::here())
+```
+
+# What species are in the swath data?
+
+```{r dat, echo = FALSE, warning = FALSE, message = FALSE}
+library(dplyr)
+library(readr)
+library(purrr)
+library(ggplot2)
+library(glmmTMB)
+library(broom.mixed)
+library(tidyr)
+
+upc <- read_csv("data/keen/keen_cover.csv") %>%
+  tidyr::drop_na(SPECIES) %>%
+  tidyr::drop_na(SITE) %>%
+  tidyr::drop_na(TRANSECT) %>%
+  filter(TRANSECT != "NA") %>%
+  filter(DIVISION.FAMILY != "Echinoderms") %>%
+  filter(DIVISION.FAMILY != "Arthropods") %>%
+  
+  # filter(is.na(SIZE) | SIZE == "<10cm") %>%
+  # filter(!(SP_CODE %in% c("CUFR", "CYLU",
+  #                         "MYOC", "MYSC",
+  #                         "ULSP", "TAAD"))) %>% #too few obs
+  complete(YEAR, SITE, SP_CODE, TRANSECT,
+           fill = list(PERCENT_COVER = 0)) %>% #because data is long
+  group_by(SP_CODE) %>% #fix NAs creates
+  mutate(SPECIES = na.omit(unique(SPECIES)),) %>%
+  ungroup()
+
+knitr::kable(upc %>%
+               select(SP_CODE, SPECIES) %>%
+               group_by(SP_CODE, SPECIES) %>% 
+               slice(1L) %>% 
+               ungroup(),
+             "html") %>%
+  kableExtra::kable_styling()
+```
+
+# Let's Plot Trends
+Here are some functions we'll apply to each species. I'll then fit mixed models with all of them using   
+
+<center>COUNT ~ YEAR * SITE + (1|TRANSECT)</center>
+
+with a gaussian error. Note, it's count, so, I could use Poisson, but, that needs to be way more tuned to each model - this should be fine for a first cut?
+
+Here's how we'll do it:
+
+```{r, echo = TRUE}
+tseries_plot <- function(adf){
+  
+  ggplot(adf,
+         aes(y = PERCENT_COVER, x = YEAR,
+             color = TRANSECT)) +
+    geom_point() +
+    geom_line() +
+    facet_wrap(~SITE, nrow = 2) +
+    labs(color = "Transect", 
+         y = "Percent Cover",  x = "Year",
+         title = adf$SPECIES[1])
+}
+
+tseries_fun <- function(adf){
+  glmmTMB(PERCENT_COVER/100+0.001 ~ YEAR * SITE,
+               data = adf,
+               family = beta_family())
+  
+}
+
+generate_output <- function(adf){
+  cat(paste0("## ", adf$SP_CODE[1], " ", adf$SPECIES[1], "  \n<br>"))
+  
+  tseries_plot(adf) %>% print()
+
+  if(sum(adf$PERCENT_COVER>10) > 15){
+  tseries_fun(adf) %>%
+    car::Anova(test.statistic  = "Chisq") %>%
+    tidy() %>%
+    knitr::kable("html", digits = 3) %>%
+    kableExtra::kable_styling() %>%
+    print
+  }
+  
+  cat("\n\n")
+}
+```
+
+Now let's `purrr::walk()` through the whole shebang.
+
+```{r, echo = TRUE, results = "asis", warning = FALSE}
+walk(split(upc, upc$SP_CODE), generate_output)
+```
