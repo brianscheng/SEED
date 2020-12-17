@@ -1,0 +1,78 @@
+---
+title: "Trends in SML intertidal data (sessile species)"
+author: "Kylla Benes"
+date: "12/16/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_knit$set(root.dir = here::here())
+```
+
+## What species are in the rocky intertidal data?
+
+
+```{r dat, echo = FALSE, warning = FALSE, message = FALSE}
+library(dplyr)
+library(readr)
+library(purrr)
+library(ggplot2)
+library(glmmTMB)
+library(broom.mixed)
+library(tidyr)
+
+data <- read.csv("data/intertidal/percent_cover_data.csv")
+data2 <-  filter(data, Percent_cover != "p", Percent_cover != "nd", Percent_cover != "upper 15.6%/substrate 1.2%", Percent_cover != "if a species is not listed to the left, please put it in the notes") #this is not working, "Error in match.arg(method) : object 'Percent_cover' not found"
+data$Transect<-factor(data$Transect)
+data$Percent_cover<-as.numeric(as.character(data$Percent_cover)) #text turned to NAs
+data$Organism<-factor(data$Organism)
+```
+
+# Let's Plot Trends
+Here are some functions we'll apply to each species. I'll then fit mixed models with all of them using   
+
+<center>COVER ~ YEAR + (1|TRANSECT)</center>
+
+with a gaussian error. Note, it's count, so, I could use Poisson, but, that needs to be way more tuned to each model - this should be fine for a first cut?
+
+Here's how we'll do it:
+```{r}
+tseries_plot <- function(data){
+  
+  ggplot(data,
+         aes(y = Percent_cover, x = Year,
+             color = Transect)) +
+    stat_summary(fun.data = mean_se) +
+    stat_summary(fun.data = mean_se, geom = "line") +
+    labs(color = "Transect", 
+         y = "Percent Cover ± SE",  x = "Year")
+}
+
+tseries_fun <- function(data){
+  glmmTMB(Percent_cover ~ Year + (1|Transect),
+               data = data,
+               family = gaussian)
+  
+}
+
+generate_output <- function(data){
+  cat(paste0("## ", data$Organism[1], " ", data$Organism[1], "  \n<br>"))
+  
+  tseries_plot(data) %>% print()
+  
+  # tseries_fun(adf) %>% 
+  #   car::Anova(test.statistic  = "Chisq") %>% 
+  #   tidy() %>%
+  #   knitr::kable("html", digits = 3) %>% 
+  #   kableExtra::kable_styling() %>%
+  #   print
+  # 
+  cat("\n\n")
+}
+```
+Now let's `purrr::walk()` through the whole shebang.
+
+```{r, echo = TRUE, results = "asis", warning = FALSE}
+walk(split(data, data$Organism), generate_output)
+```
