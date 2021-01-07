@@ -1,0 +1,83 @@
+---
+title: "Trends in SML intertidal data"
+author: "Brian Cheng"
+date: "11/24/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_knit$set(root.dir = here::here())
+```
+
+## What species are in the rocky intertidal data?
+
+
+```{r dat, echo = FALSE, warning = FALSE, message = FALSE}
+library(dplyr)
+library(readr)
+library(purrr)
+library(ggplot2)
+library(glmmTMB)
+library(broom.mixed)
+library(tidyr)
+
+data <- read_csv("data/intertidal/counts_data.csv")
+data <-  filter(data, Count != "p", Count != "sp100", Count != "casings present") #unsure why data2 is returning 450150 rows?
+data$Transect<-factor(data$Transect)
+data$Count<-as.numeric(as.character(data$Count))
+data$Organism<-factor(data$Organism)
+data$Organism<-recode(data$Organism, "Idotea baltica" = "Idotea balthica", "Tectura testinalis" = "Testudinalia testudinalis", "Tectura testudinalis" = "Testudinalia testudinalis")
+sum_total<-tapply(data$Count,data$Organism,sum)
+summary<-data.frame(sum_total)
+summary$Organism<-row.names(summary)
+ggplot(summary,aes(x=Organism, y=log10(sum_total)))+geom_bar(stat="identity")+coord_flip()
+```
+
+# Let's Plot Trends
+Here are some functions we'll apply to each species. I'll then fit mixed models with all of them using   
+
+<center>COUNT ~ YEAR * SITE + (1|TRANSECT)</center>
+
+with a gaussian error. Note, it's count, so, I could use Poisson, but, that needs to be way more tuned to each model - this should be fine for a first cut?
+
+Here's how we'll do it:
+```{r}
+tseries_plot <- function(data){
+  
+  ggplot(data,
+         aes(y = Count, x = Year,
+             color = Transect)) +
+    stat_summary(fun.data = mean_se) +
+    stat_summary(fun.data = mean_se, geom = "line") +
+    labs(color = "Transect", 
+         y = "Count per sq m ± SE",  x = "Year")
+}
+
+tseries_fun <- function(data){
+  glmmTMB(Count ~ Year + (1|Transect),
+               data = data,
+               family = gaussian)
+  
+}
+
+generate_output <- function(data){
+  cat(paste0("## ", data$Organism[1], "  \n<br>"))
+  
+  tseries_plot(data) %>% print()
+  
+  #tseries_fun(data) %>% 
+  #car::Anova(test.statistic  = "Chisq") %>% 
+  #tidy() %>%
+  #knitr::kable("html", digits = 3) %>% 
+  #kableExtra::kable_styling() %>%
+  #print
+   
+  cat("\n\n")
+}
+```
+Now let's `purrr::walk()` through the whole shebang.
+
+```{r, echo = TRUE, results = "asis", warning = FALSE}
+walk(split(data, data$Organism), generate_output)
+```
