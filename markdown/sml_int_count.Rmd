@@ -27,6 +27,11 @@ data <-  filter(data, Count != "p", Count != "sp100", Count != "casings present"
 data$Transect<-factor(data$Transect)
 data$Count<-as.numeric(as.character(data$Count))
 data$Organism<-factor(data$Organism)
+data$Organism<-recode(data$Organism, "Idotea baltica" = "Idotea balthica", "Tectura testinalis" = "Testudinalia testudinalis", "Tectura testudinalis" = "Testudinalia testudinalis")
+sum_total<-tapply(data$Count,data$Organism,sum)
+summary<-data.frame(sum_total)
+summary$Organism<-row.names(summary)
+ggplot(summary,aes(x=Organism, y=log10(sum_total)))+geom_bar(stat="identity")+coord_flip()
 ```
 
 # Let's Plot Trends
@@ -57,17 +62,17 @@ tseries_fun <- function(data){
 }
 
 generate_output <- function(data){
-  cat(paste0("## ", data$Organism[1], " ", data$Organism[1], "  \n<br>"))
+  cat(paste0("## ", data$Organism[1], "  \n<br>"))
   
   tseries_plot(data) %>% print()
   
-  # tseries_fun(adf) %>% 
-  #   car::Anova(test.statistic  = "Chisq") %>% 
-  #   tidy() %>%
-  #   knitr::kable("html", digits = 3) %>% 
-  #   kableExtra::kable_styling() %>%
-  #   print
-  # 
+  #tseries_fun(data) %>% 
+  #car::Anova(test.statistic  = "Chisq") %>% 
+  #tidy() %>%
+  #knitr::kable("html", digits = 3) %>% 
+  #kableExtra::kable_styling() %>%
+  #print
+   
   cat("\n\n")
 }
 ```
