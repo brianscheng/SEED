@@ -1,0 +1,272 @@
+---
+title: "Trends in KEEN Aggregate Data"
+author: "Jarrett Byrnes"
+date: "12/6/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+knitr::opts_knit$set(root.dir = here::here())
+
+# algal cover
+# invert cover
+# red cover
+# total mobiles in swath
+```
+
+# Load and Aggregate the Data
+
+```{r dat, echo = FALSE, warning = FALSE, message = FALSE, results = 'asis'}
+library(dplyr)
+library(readr)
+library(purrr)
+library(ggplot2)
+library(broom)
+library(lme4)
+library(tidyr)
+
+upc <- read_csv("data/keen/keen_cover.csv") %>%
+  mutate(TRANSECT = gsub("^8 Ball", "Magic 8 Ball", TRANSECT)) %>%
+  tidyr::drop_na(SPECIES) %>%
+  tidyr::drop_na(SITE) %>%
+  tidyr::drop_na(TRANSECT) %>%
+  filter(TRANSECT != "NA") %>%
+  filter(DIVISION.FAMILY != "Echinoderms") %>%
+  filter(DIVISION.FAMILY != "Arthropods") %>%
+  
+  # filter(is.na(SIZE) | SIZE == "<10cm") %>%
+  # filter(!(SP_CODE %in% c("CUFR", "CYLU",
+  #                         "MYOC", "MYSC",
+  #                         "ULSP", "TAAD"))) %>% #too few obs
+  complete(YEAR, nesting(SITE, TRANSECT), SP_CODE,
+           fill = list(PERCENT_COVER = 0)) %>% #because data is long
+  group_by(SP_CODE) %>% #fix NAs creates
+  mutate(SPECIES = na.omit(unique(SPECIES)),) %>%
+  ungroup()
+
+swath <- read_csv("data/keen/keen_swath.csv") %>%
+  tidyr::drop_na(SPECIES) %>%
+  filter(is.na(SIZE) | SIZE == "<10cm") %>%
+  filter(!(SP_CODE %in% c("CUFR", "CYLU",
+                          "MYOC", "MYSC",
+                          "ULSP", "TAAD"))) %>% #too few obs
+  complete(YEAR, nesting(SITE, 
+           TRANSECT, SIDE, QUAD), SP_CODE,
+           fill = list(COUNT = 0)) %>% #because data is long
+  group_by(SP_CODE) %>% #fix NAs creates
+  mutate(SPECIES = na.omit(unique(SPECIES)),
+         COMMON.NAME = na.omit(unique(COMMON.NAME))) %>%
+  ungroup()
+
+
+
+fish <- read_csv("data/keen/keen_fish.csv") %>%
+  tidyr::drop_na(SPECIES) %>%
+  filter(FISH.SIZE != "YOY") %>%
+  complete(YEAR, nesting(SITE, 
+           TRANSECT, SIDE, QUAD, ), SP_CODE, 
+           fill = list(COUNT = 0)) %>% #because data is long
+  group_by(SP_CODE) %>% #fix NAs creates
+  mutate(SPECIES = na.omit(unique(SPECIES)),
+         COMMON.NAME = na.omit(unique(COMMON.NAME))) %>%
+  ungroup()  %>%
+  group_by(YEAR, SITE, TRANSECT) %>%
+  summarize(COUNT = sum(COUNT, na.rm=T)) %>%
+  ungroup()
+```
+
+```{r}
+group_sum <- . %>%
+  group_by(YEAR, SITE, TRANSECT) %>%
+  summarize(PERCENT_COVER = sum(PERCENT_COVER, na.rm=T)) %>%
+  ungroup()
+
+algae <- upc %>%
+  filter(GROUP == "Algae") %>%
+  group_sum
+
+inverts <-  upc %>%
+  filter(GROUP == "Invertebrate") %>%
+  group_sum
+
+reds <- upc %>%
+  filter(COMMON.DIVISION.NAME == "Erect Red Algae") %>%
+  group_sum %>%
+  filter(PERCENT_COVER != 0) #weird error
+
+
+browns <- upc %>%
+  filter(COMMON.DIVISION.NAME == "Brown Algae") %>%
+  group_sum %>%
+  filter(PERCENT_COVER != 0) #weird error
+
+
+bryo <- upc %>%
+  filter(COMMON.DIVISION.NAME == "Bryozoans") %>%
+  group_sum 
+
+
+squirts <- upc %>%
+  filter(COMMON.DIVISION.NAME == "Tunicates") %>%
+  group_sum 
+
+crusts <- upc %>%
+  filter(COMMON.DIVISION.NAME == "Red Algal Crusts") %>%
+  group_sum
+
+#ok, mobiles from swath
+group_sum_swath <- . %>%
+  group_by(YEAR, SITE, TRANSECT) %>%
+  summarize(COUNT = sum(COUNT, na.rm=T)) %>%
+  ungroup()
+
+crustaceans <- swath %>%
+  filter(COMMON.DIVISION.NAME == "Crustaceans") %>%
+  group_sum_swath
+
+stars <- swath %>%
+  filter(COMMON.DIVISION.NAME == "Sea Stars") %>%
+  group_sum_swath
+
+
+#fish
+```
+
+# Let's Plot Trends
+Here are some functions we'll apply to each species. I'll then fit mixed models with all of them using   
+
+<center>COUNT ~ YEAR * SITE + (1|TRANSECT)</center>
+
+with a gaussian error. Note, it's cover, so, I could use Beta, but, that needs to be way more tuned to each model given that we have > 100% cover for some things - this should be fine for a first cut?
+
+Here's how we'll do it:
+
+```{r, echo = TRUE}
+tseries_plot <- function(adf){
+  
+  ggplot(adf,
+         aes(y = PERCENT_COVER, x = YEAR,
+             color = TRANSECT)) +
+    geom_point() +
+    geom_line() +
+    facet_wrap(~SITE, nrow = 2) +
+    labs(color = "Transect", 
+         y = "Percent Cover",  x = "Year")
+}
+
+tseries_fun <- function(adf){
+  lmer(PERCENT_COVER ~ YEAR * SITE + (1|TRANSECT),
+               data = adf)
+  
+}
+
+generate_output <- function(adf){
+ # cat(paste0("## ", adf$SP_CODE[1], " ", adf$SPECIES[1], "  \n<br>"))
+    cat("\n\n")
+
+  tseries_plot(adf) %>% print()
+
+  if(sum(adf$PERCENT_COVER>3) > 2){
+  tseries_fun(adf) %>%
+    car::Anova(test.statistic  = "Chisq") %>%
+    tidy() %>%
+    knitr::kable(digits = 3) %>%
+ #   kableExtra::kable_styling() %>%
+   print
+  }
+  
+}
+```
+
+
+## All Algae Percent Cover
+```{r}
+generate_output(algae)
+```
+
+## All Reds Percent Cover
+```{r}
+generate_output(reds)
+```
+
+## All Browns Percent Cover
+```{r}
+generate_output(browns)
+```
+
+
+## All Crusts Percent Cover
+```{r}
+generate_output(crusts)
+```
+
+## All Inverts Percent Cover
+```{r}
+generate_output(inverts)
+```
+
+## All Bryozoans Percent Cover
+```{r}
+generate_output(bryo)
+```
+
+
+## All Tunicates Percent Cover
+```{r}
+generate_output(squirts)
+```
+
+
+```{r, echo = FALSE}
+tseries_plot_swath <- function(adf){
+  
+  ggplot(adf,
+         aes(y = COUNT, x = YEAR,
+             color = TRANSECT)) +
+    geom_point() +
+    geom_line() +
+    facet_wrap(~SITE, nrow = 2) +
+    labs(color = "Transect", 
+         y = "Count",  x = "Year")
+}
+
+tseries_fun_swath <- function(adf){
+  lmer(COUNT ~ YEAR * SITE + (1|TRANSECT),
+               data = adf)
+  
+}
+
+generate_output_swath <- function(adf){
+ # cat(paste0("## ", adf$SP_CODE[1], " ", adf$SPECIES[1], "  \n<br>"))
+  cat("\n\n")
+
+  tseries_plot_swath(adf) %>% print()
+
+  if(sum(adf$COUNT>3) > 2){
+  tseries_fun_swath(adf) %>%
+    car::Anova(test.statistic  = "Chisq") %>%
+    tidy() %>%
+    knitr::kable(digits = 3) %>%
+   # kableExtra::kable_styling() %>%
+    print
+  }
+  
+}
+```
+
+## All Crustaceans Count
+```{r}
+generate_output_swath(crustaceans)
+```
+
+## All Stars Count
+```{r}
+generate_output_swath(stars)
+```
+
+
+## All Fish Count
+```{r}
+generate_output_swath(fish)
+```
