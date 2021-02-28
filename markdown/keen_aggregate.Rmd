@@ -185,11 +185,6 @@ generate_output <- function(adf){
 generate_output(algae)
 ```
 
-## All Browns Percent Cover
-```{r}
-generate_output(algae)
-```
-
 ## All Reds Percent Cover
 ```{r}
 generate_output(reds)
@@ -200,6 +195,11 @@ generate_output(reds)
 generate_output(browns)
 ```
 
+
+## All Crusts Percent Cover
+```{r}
+generate_output(crusts)
+```
 
 ## All Inverts Percent Cover
 ```{r}
@@ -215,11 +215,6 @@ generate_output(bryo)
 ## All Tunicates Percent Cover
 ```{r}
 generate_output(squirts)
-```
-
-## All Crusts Percent Cover
-```{r}
-generate_output(crusts)
 ```
 
 

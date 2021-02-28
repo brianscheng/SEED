@@ -1,0 +1,679 @@
+---
+title: "SML_EDA_for02_04_2021"
+author: "APutnam"
+date: "1/29/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(fig.width=12, fig.height=8) 
+library(tidyverse)
+library(dplyr)
+library(scales)
+library(lubridate)
+library(vegan)
+library(here)
+library(gridExtra)
+library(ggpubr)
+library(readr)
+library(purrr)
+library(ggplot2)
+library(glmmTMB)
+library(broom.mixed)
+here<-here::here
+```
+
+```{r include = FALSE}
+#don't just too hard folks, I'm still an R user newbie
+
+data<-read.csv(file = here("data/intertidal/counts_data.csv"), na.strings = "NA")
+
+data2<-  filter(data, Count != "p", Count != "sp100", Count != "casings present") 
+data2$Count2<-as.numeric(as.character(data2$Count))
+str(data2)
+
+
+```
+
+
+
+Paths forward with SML data:<br><br>
+
+Rare species; We will use the classification system that Kylla has put together which indicates the ID confidence of various species  when reviewing data for species<br><br><br>
+
+Elevation: due to lack of full confidence in the reliability of elevation measurement by students taking data over time (particularly prior to 1992); divide the the raw elevation scores into bins (low, mid, high intertidal).
+The function cut() is used to divide the levels into "low", "mid", "high". By specifying the breaks to 3, the range of the levels is divided into pieces of equal length. The outer limits are moved away by 0.1% of the range to ensure that the extreme values fall within the break intervals. 
+[-3.02,4.33] (4.33,11.7] (11.7,19], -3 to 4: high; 5 to 11: mid; 12 to 19: low
+
+<br><br><br>
+```{r include = FALSE}
+#levels are essentially feet above mean lower low water
+#level 0 is where the pin is at upper intertidal where as 13.5 or higher are very low intertidal zone, level -1 through -4 are upper/very high intertidal level 13.5 - 19 are VERY low intertidal and/or possibly wrong in their accuracy of measurement 
+
+#subtract the level from 13.5, so, level 11 is 13.5-11= 2.5ft above mllw 
+data2 %>% distinct(Level) # there are 24 distinct levels, so divide them into low, mid, high via the cut function
+
+#code to bin into low, mid, high
+levels <- data2$Level
+cut(levels, 3, include.lowest =  TRUE, labels= c("low", "mid", "high"))
+#how to add back to data set -  add the column data2$bins <- cut(xxxxxx)
+data2$intertidal.zone <- cut(levels, 3, include.lowest =  TRUE, labels= c("high", "mid", "low"))
+
+data2$wave.action<- ifelse(data2$Transect <= 9, "sheltered",
+                        (ifelse(data2$Transect > 25, "sheltered",
+                        "exposed")))
+
+str(data2)
+
+
+data4 <-data2 %>% group_by(Year, Organism, intertidal.zone) %>% dplyr::summarize(Mean = mean(Count2), sd = sd(Count2))
+data4 <- as.data.frame(data4)
+data4<-data4 %>% mutate(sem = `sd`/sqrt(n()))
+
+#convert everything to m2, SML use 20x20cm quadrats (except for mussels/barnacles, they only use 3 of the squares from within the 20x20cm plot), so use this code for mobile inverts and then redo the calculations for mytilids and barnacles using the data4  #turns out the values for mussels/barnacles were scaled up to be 20x20 but I address this later, so its fine
+data4 <- data4 %>% mutate(Mean = `Mean`*25) %>% mutate(sd = `sd`*25) %>% mutate(sem = `sem`*25)
+
+
+```
+
+```{r, include=  FALSE}
+ggplot(subset(data4, Organism %in% c("Littorina littorea")), 
+             aes(y = Mean, x = Year,color = intertidal.zone)) + 
+  geom_point()+
+  geom_line()+
+  geom_errorbar(aes(ymin=Mean-sem, ymax = Mean+sem), width=0)+
+  labs(color = "intertidal.zone", 
+       y = "Count (mean) per sq m ± SE",  x = "Year")+
+ theme_classic()+ 
+  scale_y_continuous(n.breaks = 20)+
+  scale_x_continuous(n.breaks = 20)+
+  ggtitle("Littorina littorea")+ theme(plot.title = element_text(hjust = 0.5, size = 18))
+```
+
+```{r include = FALSE}
+#select mobile species of interest
+mobile <- filter(data4, Organism == "Nucella lapillus"| Organism == "Littorina littorea" | Organism == "Tectura testudinalis" | Organism == "Littorina obtusata")
+```
+
+```{r include = FALSE}
+tseries_plot <- function(mobile){
+  
+  ggplot(mobile,
+         aes(y = Mean, x = Year,color = intertidal.zone)) + 
+  geom_point()+
+  geom_line()+
+  geom_errorbar(aes(ymin=Mean-sem, ymax = Mean+sem), width=0)+
+  labs(color = "intertidal.zone", 
+       y = "Count (mean) per sq m ± SE",  x = "Year")+
+ theme_classic()  +
+  scale_y_continuous(n.breaks = 20)+
+  scale_x_continuous(n.breaks = 20)+
+  theme(axis.text.x = element_text(size=12),
+          axis.text.y = element_text(size=12),
+        axis.title=element_text(face= "bold", size=12))+
+  theme(legend.title = element_text(size = 14),
+  legend.text = element_text( size = 10))
+}
+
+generate_output <- function(mobile){
+  cat(paste0("## ", mobile$Organism[1]))
+  
+  tseries_plot(mobile) %>% print()
+  
+  # tseries_fun(adf) %>% 
+  #   car::Anova(test.statistic  = "Chisq") %>% 
+  #   tidy() %>%
+  #   knitr::kable("html", digits = 3) %>% 
+  #   kableExtra::kable_styling() %>%
+  #   print
+  # 
+  cat("\n\n")
+}
+
+```
+
+```{r, echo = FALSE}
+walk(split(mobile, mobile$Organism), generate_output)
+```
+
+<br><br><br><br>
+Mytilus and Modiolus:
+Due to the challenges that students may have incurred while IDing Modiolus from Mytilus we will lump together both species and refer to them as Mytilid
+<br><br>
+
+```{r include = FALSE}
+#filter for just modiolus and mytilus
+myt <- filter(data2, Organism == "Mytilus edulis"| Organism == "Modiolus modiolus") 
+# just rename everything to mytilid and then calculate mean, sd, sem
+
+myt <- myt %>% mutate(Organism = recode(Organism, `Mytilus edulis` = "Mytilid",
+               `Modiolus modiolus` = "Mytilid"))
+
+myt2 <- myt %>% group_by(Year, intertidal.zone) %>% dplyr::summarize(Mean=mean(Count2), sd = sd(Count2))
+
+myt2 <- as.data.frame(myt2)
+myt2<-myt2 %>% mutate(sem = `sd`/sqrt(n()))
+myt2 <- myt2 %>% mutate(Mean = `Mean`*25) %>% mutate(sd = `sd`*25) %>% mutate(sem = `sem`*25)
+```
+
+```{r, echo = FALSE}
+myt2 %>% ggplot(aes(y = Mean, x = Year,color = intertidal.zone)) + 
+  geom_point()+
+  geom_line()+
+  geom_errorbar(aes(ymin=Mean-sem, ymax = Mean+sem), width=0)+
+  labs(color = "intertidal.zone", 
+       y = "Count (mean) per sq m ± SE",  x = "Year")+
+ theme_classic()+ 
+  scale_y_continuous(n.breaks = 15)+
+  scale_x_continuous(n.breaks = 20)+
+  ggtitle("Mytilid")+ theme(plot.title = element_text(hjust = 0.5, size = 18))+
+  theme(axis.text.x = element_text(
+                           size=12),
+          axis.text.y = element_text(
+                           size=12),
+        axis.title=element_text(face= "bold", size=12))+
+  theme(legend.title = element_text(size = 14),
+  legend.text = element_text( size = 10))
+```
+
+
+
+<br><br><br><br><br><br>
+Wave exposure:
+Qualitative measurements - listed in the transect_info file
+Each transect has a wave action designation as either being "sheltered" or "exposed"
+Transects 1-9 are sheltered; 10-25 are exposed, and 26-28 are sheltered
+Below are graphs of Mytilid in low, mid, high intertidal zones in sheltered and exposed transect sites
+Following are the mobile invertebrates of interest (Littorina littorea, Littorina obutsata, Nucella lapillus, and Testudinalia testudinalis)
+
+```{r include = FALSE}
+#graph species trends by wave exposure
+#need to add the exposed vs sheltered 
+#1-9: sheltered; 10-25: exposed; 26-28: sheltered
+
+mytaction <- myt %>% group_by(Year, intertidal.zone, wave.action) %>% dplyr::summarize(Mean=mean(Count2), sd = sd(Count2))
+
+mytaction <- as.data.frame(mytaction)
+mytaction<-mytaction %>% mutate(sem = `sd`/sqrt(n()))
+mytaction <- mytaction %>% mutate(Mean = `Mean`*25) %>% mutate(sd = `sd`*25) %>% mutate(sem = `sem`*25)
+                     
+
+#graph low, mid, high species trends by wave exposure
+
+sh <-ggplot(subset(mytaction, wave.action %in% c("sheltered")),(aes(y = Mean, x = Year,color = intertidal.zone))) + 
+  geom_point()+
+  geom_line()+
+  geom_errorbar(aes(ymin=Mean-sem, ymax = Mean+sem), width=0)+
+  labs(color = "intertidal.zone", 
+       y = " ",  x = "Year")+
+ theme_classic()+ 
+  scale_x_continuous(n.breaks = 20)+
+  scale_y_continuous(n.breaks = 14)+
+  ggtitle("Sheltered")+ theme(plot.title = element_text(hjust = 0.5, size = 18))+
+  theme(axis.text.x = element_text(angle = 45,
+                           size=12, vjust = .5),
+          axis.text.y = element_text(size=12),
+        axis.title=element_text(face= "bold", size=12))+
+  theme(legend.title = element_text(size = 14),
+  legend.text = element_text( size = 10))
+
+
+e <-ggplot(subset(mytaction, wave.action %in% c("exposed")),(aes(y = Mean, x = Year,color = intertidal.zone))) + 
+  geom_point()+
+  geom_line()+
+  geom_errorbar(aes(ymin=Mean-sem, ymax = Mean+sem), width=0)+
+  labs(color = "intertidal.zone", 
+       y = " ",  x = "Year")+
+ theme_classic()+ 
+  scale_y_continuous(n.breaks = 10)+
+  scale_x_continuous(n.breaks = 20)+
+  ggtitle("Exposed")+ theme(plot.title = element_text(hjust = 0.5, size = 18))+
+  theme(axis.text.x = element_text(angle = 45,
+                           size=12, vjust = .5),
+          axis.text.y = element_text(
+                           size=12),
+        axis.title=element_text(face= "bold", size=12))+
+  theme(legend.title = element_text(size = 14),
+  legend.text = element_text( size = 10))
+
+mytfig<-ggarrange(sh, e, common.legend = TRUE, legend = "bottom")
+
+
+```
+<br><br><br><br>
+
+```{r, echo = FALSE}
+#mytilid graphs
+annotate_figure(mytfig,top = text_grob("Mytilid", color = "red", face = "bold", size = 20),
+                left = text_grob("Count (mean) per sq m ± SE", color = "black", rot = 90, size= 16))
+```
+
+
+```{r include = FALSE}
+
+mobilewave <-data2 %>% group_by(Year, Organism, intertidal.zone, wave.action) %>% dplyr::summarize(Mean = mean(Count2), sd = sd(Count2))
+mobilewave <- as.data.frame(mobilewave)
+mobilewave<-mobilewave %>% mutate(sem = `sd`/sqrt(n()))
+
+mobilewave <- mobilewave %>% mutate(Mean = `Mean`*25) %>% mutate(sd = `sd`*25) %>% mutate(sem = `sem`*25)
+
+
+#select mobile species of interest
+mobilewave <- filter(mobilewave, Organism == "Nucella lapillus"| Organism == "Littorina littorea" | Organism == "Tectura testudinalis" | Organism == "Littorina obtusata")
+```
+
+```{r include= FALSE}
+exposed <- filter(mobilewave, wave.action == "exposed")
+sheltered <- filter(mobilewave, wave.action == "sheltered")
+
+LLs <-ggplot(subset(sheltered, Organism %in% c("Littorina littorea")),(aes(y = Mean, x = Year,color = intertidal.zone))) + 
+  geom_point()+
+  geom_line()+
+  geom_errorbar(aes(ymin=Mean-sem, ymax = Mean+sem), width=0)+
+  labs(color = "intertidal.zone", 
+       y = " ",  x = "Year")+
+ theme_classic()+ 
+  scale_y_continuous(n.breaks = 20)+
+  scale_x_continuous(n.breaks = 20)+
+  ggtitle("Sheltered")+ theme(plot.title = element_text(hjust = 0.5, size = 18))+
+  theme(axis.text.x = element_text(angle = 45,
+                           size=12, vjust = .5),
+          axis.text.y = element_text(
+                           size=12),
+        axis.title=element_text(face= "bold", size=12))+
+  theme(legend.title = element_text(size = 14),
+  legend.text = element_text( size = 10))
+
+
+LLe <-ggplot(subset(exposed, Organism %in% c("Littorina littorea")),(aes(y = Mean, x = Year,color = intertidal.zone))) + 
+  geom_point()+
+  geom_line()+
+  geom_errorbar(aes(ymin=Mean-sem, ymax = Mean+sem), width=0)+
+  labs(color = "intertidal.zone", 
+       y = " ",  x = "Year")+
+ theme_classic()+ 
+  scale_y_continuous(n.breaks = 20)+
+  scale_x_continuous(n.breaks = 20)+
+  ggtitle("Exposed")+ theme(plot.title = element_text(hjust = 0.5, size = 18))+
+  theme(axis.text.x = element_text(angle = 45,
+                           size=12, vjust = .5),
+          axis.text.y = element_text(
+                           size=12),
+        axis.title=element_text(face= "bold", size=12))+
+  theme(legend.title = element_text(size = 14),
+  legend.text = element_text( size = 10))
+
+LLfig<-ggarrange(LLs, LLe, common.legend = TRUE, legend = "bottom")
+
+```
+<br><br><br><br><br><br>
+```{r, echo = FALSE}
+#Littorina littorea graphs
+annotate_figure(LLfig,top = text_grob("Littorina littorea", color = "red", face = "bold", size = 20),
+                left = text_grob("Count (mean) per sq m ± SE", color = "black", rot = 90, size= 16))
+```
+
+
+```{r include= FALSE}
+los <-ggplot(subset(sheltered, Organism %in% c("Littorina obtusata")),(aes(y = Mean, x = Year,color = intertidal.zone))) + 
+  geom_point()+
+  geom_line()+
+  geom_errorbar(aes(ymin=Mean-sem, ymax = Mean+sem), width=0)+
+  labs(color = "intertidal.zone", 
+       y = " ",  x = "Year")+
+ theme_classic()+ 
+  scale_y_continuous(n.breaks = 20)+
+  scale_x_continuous(n.breaks = 20)+
+  ggtitle("Sheltered")+ theme(plot.title = element_text(hjust = 0.5, size = 18))+
+  theme(axis.text.x = element_text(angle = 45,
+                           size=12, vjust = .5),
+          axis.text.y = element_text(
+                           size=12),
+        axis.title=element_text(face= "bold", size=12))+
+  theme(legend.title = element_text(size = 14),
+  legend.text = element_text( size = 10))
+
+
+loe <-ggplot(subset(exposed, Organism %in% c("Littorina obtusata")),(aes(y = Mean, x = Year,color = intertidal.zone))) + 
+  geom_point()+
+  geom_line()+
+  geom_errorbar(aes(ymin=Mean-sem, ymax = Mean+sem), width=0)+
+  labs(color = "intertidal.zone", 
+       y = " ",  x = "Year")+
+ theme_classic()+ 
+  scale_y_continuous(n.breaks = 20)+
+  scale_x_continuous(n.breaks = 20)+
+  ggtitle("Exposed")+ theme(plot.title = element_text(hjust = 0.5, size = 18))+
+  theme(axis.text.x = element_text(angle = 45,
+                           size=12, vjust = .5),
+          axis.text.y = element_text(
+                           size=12),
+        axis.title=element_text(face= "bold", size=12))+
+  theme(legend.title = element_text(size = 14),
+  legend.text = element_text( size = 10))
+
+lofig<-ggarrange(los, loe, common.legend = TRUE, legend = "bottom")
+
+```
+<br><br><br><br><br><br>
+```{r, echo = FALSE}
+#Littorina obtusata graphs
+annotate_figure(lofig,top = text_grob("Littorina obtusata", color = "red", face = "bold", size = 20),
+                left = text_grob("Count (mean) per sq m ± SE", color = "black", rot = 90, size= 16))
+```
+
+
+```{r include= FALSE}
+nls <-ggplot(subset(sheltered, Organism %in% c("Nucella lapillus")),(aes(y = Mean, x = Year,color = intertidal.zone))) + 
+  geom_point()+
+  geom_line()+
+  geom_errorbar(aes(ymin=Mean-sem, ymax = Mean+sem), width=0)+
+  labs(color = "intertidal.zone", 
+       y = " ",  x = "Year")+
+ theme_classic()+ 
+  scale_y_continuous(n.breaks = 20)+
+  scale_x_continuous(n.breaks = 20)+
+  ggtitle("Sheltered")+ theme(plot.title = element_text(hjust = 0.5, size = 18))+
+  theme(axis.text.x = element_text(angle = 45,
+                           size=12, vjust = .5),
+          axis.text.y = element_text(
+                           size=12),
+        axis.title=element_text(face= "bold", size=12))+
+  theme(legend.title = element_text(size = 14),
+  legend.text = element_text( size = 10))
+
+
+nle <-ggplot(subset(exposed, Organism %in% c("Nucella lapillus")),(aes(y = Mean, x = Year,color = intertidal.zone))) + 
+  geom_point()+
+  geom_line()+
+  geom_errorbar(aes(ymin=Mean-sem, ymax = Mean+sem), width=0)+
+  labs(color = "intertidal.zone", 
+       y = " ",  x = "Year")+
+ theme_classic()+ 
+  scale_y_continuous(n.breaks = 20)+
+  scale_x_continuous(n.breaks = 20)+
+  ggtitle("Exposed")+ theme(plot.title = element_text(hjust = 0.5, size = 18))+
+  theme(axis.text.x = element_text(angle = 45,
+                           size=12, vjust = .5),
+          axis.text.y = element_text(
+                           size=12),
+        axis.title=element_text(face= "bold", size=12))+
+  theme(legend.title = element_text(size = 14),
+  legend.text = element_text( size = 10))
+
+nefig<-ggarrange(nls, nle, common.legend = TRUE, legend = "bottom")
+
+```
+<br><br><br><br><br><br>
+```{r, echo = FALSE}
+#Nucella lapillus graphs
+annotate_figure(nefig,top = text_grob("Nucella lapillus ", color = "red", face = "bold", size = 20),
+                left = text_grob("Count (mean) per sq m ± SE", color = "black", rot = 90, size= 16))
+```
+
+```{r include= FALSE}
+tts <-ggplot(subset(sheltered, Organism %in% c("Tectura testudinalis")),(aes(y = Mean, x = Year,color = intertidal.zone))) + 
+  geom_point()+
+  geom_line()+
+  geom_errorbar(aes(ymin=Mean-sem, ymax = Mean+sem), width=0)+
+  labs(color = "intertidal.zone", 
+       y = " ",  x = "Year")+
+ theme_classic()+ 
+  scale_y_continuous(n.breaks = 20)+
+  scale_x_continuous(n.breaks = 20)+
+  ggtitle("Sheltered")+ theme(plot.title = element_text(hjust = 0.5, size = 18))+
+  theme(axis.text.x = element_text(angle = 45,
+                           size=12, vjust = .5),
+          axis.text.y = element_text(
+                           size=12),
+        axis.title=element_text(face= "bold", size=12))+
+  theme(legend.title = element_text(size = 14),
+  legend.text = element_text( size = 10))
+
+
+tte <-ggplot(subset(exposed, Organism %in% c("Tectura testudinalis")),(aes(y = Mean, x = Year,color = intertidal.zone))) + 
+  geom_point()+
+  geom_line()+
+  geom_errorbar(aes(ymin=Mean-sem, ymax = Mean+sem), width=0)+
+  labs(color = "intertidal.zone", 
+       y = " ",  x = "Year")+
+ theme_classic()+ 
+  scale_y_continuous(n.breaks = 20)+
+  scale_x_continuous(n.breaks = 20)+
+  ggtitle("Exposed")+ theme(plot.title = element_text(hjust = 0.5, size = 18))+
+  theme(axis.text.x = element_text(angle = 45,
+                           size=12, vjust = .5),
+          axis.text.y = element_text(
+                           size=12),
+        axis.title=element_text(face= "bold", size=12))+
+  theme(legend.title = element_text(size = 14),
+  legend.text = element_text( size = 10))
+
+ttfig<-ggarrange(tts, tte, common.legend = TRUE, legend = "bottom")
+
+```
+<br><br><br><br><br><br>
+```{r, echo = FALSE}
+#Testuinalia testudinalis graphs
+annotate_figure(ttfig,top = text_grob("Testudinalia testudinalis", color = "red", face = "bold", size = 20),
+                left = text_grob("Count (mean) per sq m ± SE", color = "black", rot = 90, size= 16))
+```
+
+<br><br><br><br><br><br>
+Transects:
+Transects 5, 7, 26, 15, 20 (~22) are the most frequently observed transects and represented every year, graphs below show the data filtered for those 6 transects only. Patterns are similar to graphs which include all transects with some slight variation (example: Littorina littorea)
+```{r include = FALSE}
+
+
+trans <- filter(data2, Transect == "5"| Transect == "7"| Transect == "15"| Transect == "20"| Transect == "22" )
+trans %>% distinct(Transect) #checking!
+trans1 <- filter(trans, Organism == "Nucella lapillus"| Organism == "Littorina littorea" | Organism == "Tectura testudinalis" | Organism == "Littorina obtusata")
+
+
+trans2 <-trans1 %>% group_by(Year, Organism, intertidal.zone, wave.action) %>% dplyr::summarize(Mean = mean(Count2), sd = sd(Count2))
+trans2 <- as.data.frame(trans2)
+trans2<-trans2 %>% mutate(sem = `sd`/sqrt(n()))
+trans2 <- trans2 %>% mutate(Mean = `Mean`*25) %>% mutate(sd = `sd`*25) %>% mutate(sem = `sem`*25)
+
+
+```
+
+
+```{r include= FALSE}
+exposed1 <- filter(trans2, wave.action == "exposed")
+sheltered1 <- filter(trans2, wave.action == "sheltered")
+
+LLs1 <-ggplot(subset(sheltered1, Organism %in% c("Littorina littorea")),(aes(y = Mean, x = Year,color = intertidal.zone))) + 
+  geom_point()+
+  geom_line()+
+  geom_errorbar(aes(ymin=Mean-sem, ymax = Mean+sem), width=0)+
+  labs(color = "intertidal.zone", 
+       y = " ",  x = "Year")+
+ theme_classic()+ 
+  scale_y_continuous(n.breaks = 20)+
+  scale_x_continuous(n.breaks = 20)+
+  ggtitle("Sheltered")+ theme(plot.title = element_text(hjust = 0.5, size = 18))+
+  theme(axis.text.x = element_text(angle = 45,
+                           size=12, vjust = .5),
+          axis.text.y = element_text(
+                           size=12),
+        axis.title=element_text(face= "bold", size=12))+
+  theme(legend.title = element_text(size = 14),
+  legend.text = element_text( size = 10))
+
+
+LLe1 <-ggplot(subset(exposed1, Organism %in% c("Littorina littorea")),(aes(y = Mean, x = Year,color = intertidal.zone))) + 
+  geom_point()+
+  geom_line()+
+  geom_errorbar(aes(ymin=Mean-sem, ymax = Mean+sem), width=0)+
+  labs(color = "intertidal.zone", 
+       y = " ",  x = "Year")+
+ theme_classic()+ 
+  scale_y_continuous(n.breaks = 20)+
+  scale_x_continuous(n.breaks = 20)+
+  ggtitle("Exposed")+ theme(plot.title = element_text(hjust = 0.5, size = 18))+
+  theme(axis.text.x = element_text(angle = 45,
+                           size=12, vjust = .5),
+          axis.text.y = element_text(
+                           size=12),
+        axis.title=element_text(face= "bold", size=12))+
+  theme(legend.title = element_text(size = 14),
+  legend.text = element_text( size = 10))
+
+LLfig1<-ggarrange(LLs1, LLe1, common.legend = TRUE, legend = "bottom")
+
+```
+<br><br><br><br><br><br>
+```{r, echo = FALSE}
+#Littorina littorea graphs
+annotate_figure(LLfig1,top = text_grob("Littorina littorea", color = "red", face = "bold", size = 20),
+                left = text_grob("Count (mean) per sq m ± SE", color = "black", rot = 90, size= 16))
+```
+
+
+```{r include= FALSE}
+los1 <-ggplot(subset(sheltered1, Organism %in% c("Littorina obtusata")),(aes(y = Mean, x = Year,color = intertidal.zone))) + 
+  geom_point()+
+  geom_line()+
+  geom_errorbar(aes(ymin=Mean-sem, ymax = Mean+sem), width=0)+
+  labs(color = "intertidal.zone", 
+       y = " ",  x = "Year")+
+ theme_classic()+ 
+  scale_y_continuous(n.breaks = 20)+
+  scale_x_continuous(n.breaks = 20)+
+  ggtitle("Sheltered")+ theme(plot.title = element_text(hjust = 0.5, size = 18))+
+  theme(axis.text.x = element_text(angle = 45,
+                           size=12, vjust = .5),
+          axis.text.y = element_text(
+                           size=12),
+        axis.title=element_text(face= "bold", size=12))+
+  theme(legend.title = element_text(size = 14),
+  legend.text = element_text( size = 10))
+
+
+loe1 <-ggplot(subset(exposed1, Organism %in% c("Littorina obtusata")),(aes(y = Mean, x = Year,color = intertidal.zone))) + 
+  geom_point()+
+  geom_line()+
+  geom_errorbar(aes(ymin=Mean-sem, ymax = Mean+sem), width=0)+
+  labs(color = "intertidal.zone", 
+       y = " ",  x = "Year")+
+ theme_classic()+ 
+  scale_y_continuous(n.breaks = 20)+
+  scale_x_continuous(n.breaks = 20)+
+  ggtitle("Exposed")+ theme(plot.title = element_text(hjust = 0.5, size = 18))+
+  theme(axis.text.x = element_text(angle = 45,
+                           size=12, vjust = .5),
+          axis.text.y = element_text(
+                           size=12),
+        axis.title=element_text(face= "bold", size=12))+
+  theme(legend.title = element_text(size = 14),
+  legend.text = element_text( size = 10))
+
+lofig1<-ggarrange(los1, loe1, common.legend = TRUE, legend = "bottom")
+
+```
+<br><br><br><br><br><br>
+```{r, echo = FALSE}
+#Littorina obtusata graphs
+annotate_figure(lofig1,top = text_grob("Littorina obtusata", color = "red", face = "bold", size = 20),
+                left = text_grob("Count (mean) per sq m ± SE", color = "black", rot = 90, size= 16))
+```
+
+
+```{r include= FALSE}
+nls1 <-ggplot(subset(sheltered1, Organism %in% c("Nucella lapillus")),(aes(y = Mean, x = Year,color = intertidal.zone))) + 
+  geom_point()+
+  geom_line()+
+  geom_errorbar(aes(ymin=Mean-sem, ymax = Mean+sem), width=0)+
+  labs(color = "intertidal.zone", 
+       y = " ",  x = "Year")+
+ theme_classic()+ 
+  scale_y_continuous(n.breaks = 20)+
+  scale_x_continuous(n.breaks = 20)+
+  ggtitle("Sheltered")+ theme(plot.title = element_text(hjust = 0.5, size = 18))+
+  theme(axis.text.x = element_text(angle = 45,
+                           size=12, vjust = .5),
+          axis.text.y = element_text(
+                           size=12),
+        axis.title=element_text(face= "bold", size=12))+
+  theme(legend.title = element_text(size = 14),
+  legend.text = element_text( size = 10))
+
+
+nle1 <-ggplot(subset(exposed1, Organism %in% c("Nucella lapillus")),(aes(y = Mean, x = Year,color = intertidal.zone))) + 
+  geom_point()+
+  geom_line()+
+  geom_errorbar(aes(ymin=Mean-sem, ymax = Mean+sem), width=0)+
+  labs(color = "intertidal.zone", 
+       y = " ",  x = "Year")+
+ theme_classic()+ 
+  scale_y_continuous(n.breaks = 20)+
+  scale_x_continuous(n.breaks = 20)+
+  ggtitle("Exposed")+ theme(plot.title = element_text(hjust = 0.5, size = 18))+
+  theme(axis.text.x = element_text(angle = 45,
+                           size=12, vjust = .5),
+          axis.text.y = element_text(
+                           size=12),
+        axis.title=element_text(face= "bold", size=12))+
+  theme(legend.title = element_text(size = 14),
+  legend.text = element_text( size = 10))
+
+nefig1<-ggarrange(nls1, nle1, common.legend = TRUE, legend = "bottom")
+
+```
+<br><br><br><br><br><br>
+```{r, echo = FALSE}
+#Nucella lapillus graphs
+annotate_figure(nefig1,top = text_grob("Nucella lapillus ", color = "red", face = "bold", size = 20),
+                left = text_grob("Count (mean) per sq m ± SE", color = "black", rot = 90, size= 16))
+```
+
+```{r include= FALSE}
+tts1 <-ggplot(subset(sheltered1, Organism %in% c("Tectura testudinalis")),(aes(y = Mean, x = Year,color = intertidal.zone))) + 
+  geom_point()+
+  geom_line()+
+  geom_errorbar(aes(ymin=Mean-sem, ymax = Mean+sem), width=0)+
+  labs(color = "intertidal.zone", 
+       y = " ",  x = "Year")+
+ theme_classic()+ 
+  scale_y_continuous(n.breaks = 20)+
+  scale_x_continuous(n.breaks = 20)+
+  ggtitle("Sheltered")+ theme(plot.title = element_text(hjust = 0.5, size = 18))+
+  theme(axis.text.x = element_text(angle = 45,
+                           size=12, vjust = .5),
+          axis.text.y = element_text(
+                           size=12),
+        axis.title=element_text(face= "bold", size=12))+
+  theme(legend.title = element_text(size = 14),
+  legend.text = element_text( size = 10))
+
+
+tte1 <-ggplot(subset(exposed1, Organism %in% c("Tectura testudinalis")),(aes(y = Mean, x = Year,color = intertidal.zone))) + 
+  geom_point()+
+  geom_line()+
+  geom_errorbar(aes(ymin=Mean-sem, ymax = Mean+sem), width=0)+
+  labs(color = "intertidal.zone", 
+       y = " ",  x = "Year")+
+ theme_classic()+ 
+  scale_y_continuous(n.breaks = 20)+
+  scale_x_continuous(n.breaks = 20)+
+  ggtitle("Exposed")+ theme(plot.title = element_text(hjust = 0.5, size = 18))+
+  theme(axis.text.x = element_text(angle = 45,
+                           size=12, vjust = .5),
+          axis.text.y = element_text(
+                           size=12),
+        axis.title=element_text(face= "bold", size=12))+
+  theme(legend.title = element_text(size = 14),
+  legend.text = element_text( size = 10))
+
+ttfig1<-ggarrange(tts1, tte1, common.legend = TRUE, legend = "bottom")
+
+```
+<br><br><br><br><br><br>
+```{r, echo = FALSE}
+#Testuinalia testudinalis graphs
+annotate_figure(ttfig1,top = text_grob("Testudinalia testudinalis", color = "red", face = "bold", size = 20),
+                left = text_grob("Count (mean) per sq m ± SE", color = "black", rot = 90, size= 16))
+```
+
