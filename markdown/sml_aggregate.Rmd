@@ -1,0 +1,599 @@
+---
+title: "Trends in SML Aggregate Data"
+author: "Kylla Benes (adapted from: Jarrett Byrnes)"
+date: "3/1/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+knitr::opts_knit$set(root.dir = here::here())
+
+# algal cover
+# invert cover
+# red cover
+# total mobiles in swath
+```
+
+# Load and Aggregate the Data
+
+```{r dat, echo = FALSE, warning = FALSE, message = FALSE, results = 'asis'}
+library(dplyr)
+library(readr)
+library(purrr)
+library(ggplot2)
+library(broom)
+library(lme4)
+library(tidyr)
+
+pc = read.csv("data/intertidal/pc_clean.csv", header=TRUE, 
+                   na.strings = c("NA"))
+
+ct = read.csv("data/intertidal/ct_clean.csv", header=TRUE, 
+              na.strings = c("NA"))
+
+# Combine df-------------------
+pc_agg <- pc %>%
+  mutate(type = case_when(Organism == "Ascophyllum nodosum (canopy)" ~ "Algae",
+                          Organism == "Ascophyllum nodosum (primary)" ~ "Algae",
+                          Organism == "Acoela" ~ "Invertebrate",
+                          Organism == "Acrosiphonia" ~ "Algae",
+                          Organism == "Ahnfeltia plicata" ~ "Algae",
+                          Organism == "Alaria esculenta" ~ "Algae",
+                          Organism == "Alaria esculenta (canopy)" ~ "Algae",
+                          Organism == "Alaria esculenta (primary)" ~ "Algae",
+                          Organism == "Alcyonidium" ~ "Invertebrate",
+                          Organism == "Amathia" ~ "Invertebrate",
+                          Organism == "Amphipoda" ~ "Invertebrate",
+                          Organism == "Anomia simplex" ~ "Invertebrate",
+                          Organism == "Antithamnion" ~ "Algae",
+                          Organism == "Anurida maritima" ~ "Invertebrate",
+                          Organism == "Aplidium" ~ "Invertebrate",
+                          Organism == "Arthopyrenia" ~ "Fungi",
+                          Organism == "Ascophyllum nodosum" ~ "Algae",
+                          Organism == "Asterias forbesi" ~ "Invertebrate",
+                          Organism == "Asterias rubens" ~ "Invertebrate",
+                          Organism == "Astyris lunata" ~ "Invertebrate",
+                          Organism == "Audouinella"~ "Algae",
+                          Organism == "Bangia atropurpurea" ~ "Algae",
+                          Organism == "Black zone"~"Algae",
+                          Organism == "Bonnemaisonia hamifera" ~ "Algae",
+                          Organism == "Bonnemaisonia hamifera (Trailiella phase)" ~ "Algae",
+                          Organism == "Boreochiton ruber" ~ "Invertebrate",
+                          Organism == "Botrylloides aureum"~ "Invertebrate",
+                          Organism == "Botrylloides violaceus" ~ "Invertebrate",
+                          Organism == "Botryllus schlosseri" ~ "Invertebrate",
+                          Organism == "Bugula neritina" ~ "Invertebrate",
+                          Organism == "Callophyllis" ~ "Algae",
+                          Organism == "Callopora" ~ "Invertebrate",
+                          Organism == "Cancer borealis" ~ "Invertebrate",
+                          Organism == "Cancer irroratus" ~ "Invertebrate",
+                          Organism == "Cancer" ~ "Invertebrate",
+                          Organism == "Celleporella hyalina" ~ "Invertebrate",
+                          Organism == "Ceramium virgatum" ~ "Algae",
+                          Organism == "Ceramium virgatum (canopy)" ~ "Algae",
+                          Organism == "Ceramium virgatum (primary)" ~ "Algae",
+                          Organism == "Cerianthus" ~ "Invertebrate",
+                          Organism == "Chaetomorpha" ~ "Algae",
+                          Organism == "Chlorella" ~ "Algae",
+                          Organism == "Chondrus crispus" ~ "Algae",
+                          Organism == "Chondrus crispus (canopy)" ~ "Algae",
+                          Organism == "Chondrus crispus (primary)" ~ "Algae",
+                          Organism == "Chorda filum" ~ "Algae",
+                          Organism == "Chordaria flagelliformis" ~ "Algae",
+                          Organism == "Cirratulus" ~ "Invertebrate",
+                          Organism == "Cladophora rupestris" ~ "Algae",
+                          Organism == "Cladophora" ~ "Algae",
+                          Organism == "Cladostephus spongiosus" ~ "Algae",
+                          Organism == "Clathromorphum circumscriptum" ~ "Algae",
+                          Organism == "Codium fragile" ~ "Algae",
+                          Organism == "Codium fragile (canopy)" ~ "Algae",
+                          Organism == "Codium fragile (primary)" ~ "Algae",
+                          Organism == "Colpomenia peregrina" ~ "Algae",
+                          Organism == "Colus stimpsoni" ~ "Invertebrate",
+                          Organism == "Corallina officinalis" ~ "Algae",
+                          Organism == "Coralline (crust)" ~ "Algae",
+                          Organism == "Coryphella" ~ "Invertebrate",
+                          Organism == "Crepidula fornicata" ~ "Invertebrate",
+                          Organism == "Cribrilina" ~ "Invertebrate",
+                          Organism == "Cryptosula pallasiana" ~ "Invertebrate",
+                          Organism == "Culicoides" ~ "Invertebrate",
+                          Organism == "Cyanobacteria" ~ "Algae",
+                          Organism == "Cystoclonium purpureum" ~ "Algae",
+                          Organism == "Dendrodoa" ~ "Invertebrate",
+                          Organism == "Dendronotus"~"Invertebrate",
+                          Organism == "Devaleraea ramentacea"~"Algae",
+                          Organism == "Diadumene lineata"~"Invertebrate",
+                          Organism == "Didemnum vexillum"~"Invertebrate",
+                          Organism == "Diplosoma"~"Invertebrate",
+                          Organism == "Dynamena pumila"~"Invertebrate",
+                          Organism == "Ectocarpus"~"Algae",
+                          Organism == "Ectopleura crocea"~"Invertebrate",
+                          Organism == "Elachista fucicola"~"Algae",
+                          Organism == "Electra pilosa"~"Invertebrate",
+                          Organism == "Erythrotrichia carnea"~"Algae",
+                          Organism == "Euplana"~"Invertebrate",
+                          Organism == "Euthora cristata"~"Algae",
+                          Organism == "Fabricia"~"Invertebrate",
+                          Organism == "Flustrellidra hispida"~"Invertebrate",
+                          Organism == "Foviella"~"Invertebrate",
+                          Organism == "Fucus distichus"~"Algae",
+                          Organism == "Fucus distichus (canopy)"~"Algae",
+                          Organism == "Fucus distichus (primary)"~"Algae",
+                          Organism == "Fucus spiralis"~"Algae",
+                          Organism == "Fucus spiralis (canopy)"~"Algae",
+                          Organism == "Fucus spiralis (primary)"~"Algae",
+                          Organism == "Fucus vesiculosus"~"Algae",
+                          Organism == "Fucus vesiculosus (canopy)"~"Algae",
+                          Organism == "Fucus vesiculosus (canopy)"~"Algae",
+                          Organism == "Fucus"~"Algae",
+                          Organism == "Fucus (canopy)"~"Algae",
+                          Organism == "Fucus (primary)"~"Algae",
+                          Organism == "Halacarus"~"Invertebrate",
+                          Organism == "Halichondria"~"Invertebrate",
+                          Organism == "Hemigrapsus sanguineus"~"Invertebrate",
+                          Organism == "Henricia sanguinolenta"~"Invertebrate",
+                          Organism == "Hiatella arctica"~"Invertebrate",
+                          Organism == "Hildenbrandia rubra"~"Algae",
+                          Organism == "Hincksia granulosa"~"Algae",
+                          Organism == "Idotea balthica"~"Invertebrate",
+                          Organism == "Idotea balthica"~"Invertebrate",
+                          Organism == "Lacuna vincta"~"Invertebrate",
+                          Organism == "Leathesia marina"~"Algae",
+                          Organism == "Lepidonotus"~"Invertebrate",
+                          Organism == "Leucosolenia"~"Invertebrate",
+                          Organism == "Lithophyllum"~"Algae",
+                          Organism == "Littorina littorea"~"Invertebrate",
+                          Organism == "Littorina obtusata"~"Invertebrate",
+                          Organism == "Littorina saxatilis"~"Invertebrate",
+                          Organism == "Mastocarpus stellatus"~"Algae",
+                          Organism == "Mastocarpus stellatus (canopy)"~"Algae",
+                          Organism == "Mastocarpus stellatus (primary)"~"Algae",
+                          Organism == "Mastocarpus stellatus (crust)"~"Algae",
+                          Organism == "Membranipora membranacea"~"Invertebrate",
+                          Organism == "Metridium senile"~"Invertebrate",
+                          Organism == "Microporella ciliata"~"Invertebrate",
+                          Organism == "Micrura affinis"~"Invertebrate",
+                          Organism == "Modiolus modiolus"~"Invertebrate",
+                          Organism == "Molgula"~"Invertebrate",
+                          Organism == "Monostroma"~"Algae",
+                          Organism == "Mya arenaria"~"Invertebrate",
+                          Organism == "Mytilus edulis"~"Invertebrate",
+                          Organism == "Namanereis"~"Invertebrate",
+                          Organism == "Nicolea"~"Invertebrate",
+                          Organism == "Notoplana"~"Invertebrate",
+                          Organism == "Nucella lapillus"~"Invertebrate",
+                          Organism == "Nudibranchia"~"Invertebrate",
+                          Organism == "Onchidoris"~"Invertebrate",
+                          Organism == "Ophiopholis"~"Invertebrate",
+                          Organism == "Ostrea edulis"~"Invertebrate",
+                          Organism == "Pagurus acadianus"~"Invertebrate",
+                          Organism == "Palmaria palmata"~"Algae",
+                          Organism == "Petalonia fascia"~"Algae",
+                          Organism == "Phymatolithon lenormandii"~"Algae",
+                          Organism == "Platyhelminthes"~"Invertebrate",
+                          Organism == "Platyhelminthes"~"Invertebrate",
+                          Organism == "Plumaria plumosa"~"Algae",
+                          Organism == "Polychaeta"~"Invertebrate",
+                          Organism == "Polysiphonia"~"Algae",
+                          Organism == "Polysiphonia (canopy)"~"Algae",
+                          Organism == "Polysiphonia (primary)"~"Algae",
+                          Organism == "Porphyra"~"Algae",
+                          Organism == "Prasiola stipitata"~"Algae",
+                          Organism == "Praunus"~"Invertebrate",
+                          Organism == "Protectocarpus speciosus"~"Algae",
+                          Organism == "Pterothamnion plumula"~"Algae",
+                          Organism == "Ptilota serrata"~"Algae",
+                          Organism == "Pylaiella littoralis"~"Algae",
+                          Organism == "Ralfsia"~"Algae",
+                          Organism == "Rhizoclonium tortuosum"~"Algae",
+                          Organism == "Saccharina latissima"~"Algae",
+                          Organism == "Saccharina latissima (canopy)"~"Algae",
+                          Organism == "Saccharina latissima (primary)"~"Algae",
+                          Organism == "Saccorhiza dermatodea"~"Algae",
+                          Organism == "Schizoporella unicornis"~"Invertebrate",
+                          Organism == "Scytosiphon lomentaria"~"Algae",
+                          Organism == "Semibalanus balanoides"~"Invertebrate",
+                          Organism == "Sertularia"~"Invertebrate",
+                          Organism == "Skeneopsis planorbis"~"Invertebrate",
+                          Organism == "Spermothamnion repens"~"Algae",
+                          Organism == "Sphacelaria cirrosa"~"Algae",
+                          Organism == "Sphacelaria"~"Algae",
+                          Organism == "Spirorbis"~"Invertebrate",
+                          Organism == "Spongomorpha aeruginosa"~"Algae",
+                          Organism == "Strongylocentrotus droebachiensis"~"Invertebrate",
+                          Organism == "Testudinalia testudinalis"~"Invertebrate",
+                          Organism == "Thelepus cincinnatus"~"Invertebrate",
+                          Organism == "Tricellaria"~"Invertebrate",
+                          Organism == "Ulva intestinalis"~"Algae",
+                          Organism == "Ulva lactuca"~"Algae",
+                          Organism == "Verrucaria"~"Fungi",
+                          Organism == "Vertebrata lanosa"~"Algae"
+))
+
+
+
+pc_agg <- pc_agg %>%
+  mutate(subtype = case_when(
+Organism == "Acrosiphonia"~"Green Algae",
+Organism == "Ahnfeltia plicata"~"Erect Red Algae",
+Organism == "Alaria esculenta"~"Erect Brown Algae",
+Organism == "Alaria esculenta (canopy)"~"Erect Brown Algae",
+Organism == "Alaria esculenta (primary)"~"Erect Brown Algae",
+Organism == "Alcyonidium"~"Bryozoan",
+Organism == "Amathia"~"Bryozoan",
+Organism == "Amphipoda"~"Crustacean",
+Organism == "Anomia simplex"~"Bivalve",
+Organism == "Antithamnion"~"Erect Red Algae",
+Organism == "Anurida maritima"~"Collembola",
+Organism == "Aplidium"~"Tunicate",
+Organism == "Arthopyrenia"~"Fungi",
+Organism == "Ascophyllum nodosum"~"Erect Brown Algae",
+Organism == "Ascophyllum nodosum (canopy)"~"Erect Brown Algae",
+Organism == "Ascophyllum nodosum (primary)"~"Erect Brown Algae",
+Organism == "Asterias forbesi"~"Sea Star",
+Organism == "Asterias rubens"~"Sea Star",
+Organism == "Astyris lunata"~"Gastropod",
+Organism == "Audouinella"~"Erect Red Algae",
+Organism == "Bangia atropurpurea"~"Erect Red Algae",
+Organism == "Black zone"~"Cyanobacteria",
+Organism == "Bonnemaisonia hamifera"~"Erect Red Algae",
+Organism == "Bonnemaisonia hamifera (Trailiella phase)"~"Erect Red Algae",
+Organism == "Boreochiton ruber"~"Polyplacophora",
+Organism == "Botrylloides aureum"~"Tunicate",
+Organism == "Botrylloides violaceus"~"Tunicate",
+Organism == "Botryllus schlosseri"~"Tunicate",
+Organism == "Bugula neritina"~"Bryozoan",
+Organism == "Callophyllis"~"Erect Red Algae",
+Organism == "Callopora"~"Bryozoan",
+Organism == "Cancer"~"Crustacean",
+Organism == "Cancer borealis"~"Crustacean",
+Organism == "Cancer irroratus"~"Crustacean",
+Organism == "Celleporella hyalina"~"Bryozoan",
+Organism == "Ceramium virgatum"~"Erect Red Algae",
+Organism == "Ceramium virgatum (canopy)"~"Erect Red Algae",
+Organism == "Ceramium virgatum (primary)"~"Erect Red Algae",
+Organism == "Cerianthus"~"Anthozoan",
+Organism == "Chaetomorpha"~"Green Algae",
+Organism == "Chlorella"~"Green Algae",
+Organism == "Chondrus crispus"~"Erect Red Algae",
+Organism == "Chondrus crispus (canopy)"~"Erect Red Algae",
+Organism == "Chondrus crispus (primary)"~"Erect Red Algae",
+Organism == "Chorda filum"~"Erect Brown Algae",
+Organism == "Chordaria flagelliformis"~"Erect Brown Algae",
+Organism == "Cirratulus"~"Worm",
+Organism == "Cladophora"~"Green Algae",
+Organism == "Cladophora rupestris"~"Green Algae",
+Organism == "Cladostephus spongiosus"~"Erect Brown Algae",
+Organism == "Clathromorphum circumscriptum"~"Red Algal Crust",
+Organism == "Codium fragile"~"Green Algae",
+Organism == "Codium fragile (canopy)"~"Green Algae",
+Organism == "Codium fragile (primary)"~"Green Algae",
+Organism == "Colpomenia peregrina"~"Erect Brown Algae",
+Organism == "Colus stimpsoni"~"Gastropod",
+Organism == "Corallina officinalis"~"Erect Red Algae",
+Organism == "Coralline (crust)" ~"Red Algal Crust",
+Organism == "Coryphella"~"Gastropod",
+Organism == "Crepidula fornicata"~"Gastropod",
+Organism == "Cribrilina"~"Bryozoan",
+Organism == "Cryptosula pallasiana"~"Bryozoan",
+Organism == "Culicoides"~"Crustacean",
+Organism == "Cyanobacteria" ~ "Cyanobacteria",
+Organism == "Cystoclonium purpureum"~"Erect Red Algae",
+Organism == "Dendrodoa"~"Tunicate",
+Organism == "Dendronotus"~"Gastropod",
+Organism == "Devaleraea ramentacea"~"Erect Red Algae",
+Organism == "Diadumene lineata"~"Anthozoan",
+Organism == "Didemnum vexillum"~"Tunicate",
+Organism == "Diplosoma"~"Tunicate",
+Organism == "Dynamena pumila"~"Hydrozoan",
+Organism == "Ectocarpus"~"Erect Brown Algae",
+Organism == "Ectopleura crocea"~"Hydrozoan",
+Organism == "Elachista fucicola"~"Erect Brown Algae",
+Organism == "Electra pilosa"~"Bryozoan",
+Organism == "Erythrotrichia carnea"~"Erect Red Algae",
+Organism == "Euplana"~"Worm",
+Organism == "Euthora cristata"~"Erect Red Algae",
+Organism == "Fabricia"~"Worm",
+Organism == "Flustrellidra hispida"~"Bryozoan",
+Organism == "Foviella"~"Worm",
+Organism == "Fucus"~"Erect Brown Algae",
+Organism == "Fucus (canopy)"~"Erect Brown Algae",
+Organism == "Fucus (primary)"~"Erect Brown Algae",
+Organism == "Fucus distichus"~"Erect Brown Algae",
+Organism == "Fucus distichus (canopy)"~"Erect Brown Algae",
+Organism == "Fucus distichus (primary)"~"Erect Brown Algae",
+Organism == "Fucus spiralis"~"Erect Brown Algae",
+Organism == "Fucus spiralis (canopy)"~"Erect Brown Algae",
+Organism == "Fucus spiralis (primary)"~"Erect Brown Algae",
+Organism == "Fucus vesiculosus"~"Erect Brown Algae",
+Organism == "Fucus vesiculosus (canopy)"~"Erect Brown Algae",
+Organism == "Fucus vesiculosus (primary)"~"Erect Brown Algae",
+Organism == "Halacarus"~"Crustacean",
+Organism == "Halichondria"~"Sponge",
+Organism == "Hemigrapsus sanguineus"~"Crustacean",
+Organism == "Henricia sanguinolenta"~"Sea Star",
+Organism == "Hiatella arctica"~"Bivalve",
+Organism == "Hildenbrandia rubra"~"Red Algal Crust",
+Organism == "Hincksia granulosa"~"Erect Brown Algae",
+Organism == "Idotea balthica"~"Crustacean",
+Organism == "Idotea balthica"~"Crustacean",
+Organism == "Lacuna vincta"~"Gastropod",
+Organism == "Leathesia marina"~"Erect Brown Algae",
+Organism == "Lepidonotus"~"Worm",
+Organism == "Leucosolenia"~"Sponge",
+Organism == "Lithophyllum"~"Red Algal Crust",
+Organism == "Littorina littorea"~"Gastropod",
+Organism == "Littorina obtusata"~"Gastropod",
+Organism == "Littorina saxatilis"~"Gastropod",
+Organism == "Mastocarpus stellatus"~"Erect Red Algae",
+Organism == "Mastocarpus stellatus (canopy)"~"Erect Red Algae",
+Organism == "Mastocarpus stellatus (primary)"~"Erect Red Algae",
+Organism == "Mastocarpus stellatus (crust)"~"Red Algal Crust",
+Organism == "Membranipora membranacea"~"Bryozoan",
+Organism == "Metridium senile"~"Anthozoan",
+Organism == "Microporella ciliata"~"Bryozoan",
+Organism == "Micrura affinis"~"Worm",
+Organism == "Modiolus modiolus"~"Bivalve",
+Organism == "Molgula"~"Tunicate",
+Organism == "Monostroma"~"Green Algae",
+Organism == "Mya arenaria"~"Bivalve",
+Organism == "Mytilus edulis"~"Bivalve",
+Organism == "Namanereis"~"Worm",
+Organism == "Nicolea"~"Worm",
+Organism == "Notoplana"~"Worm",
+Organism == "Nucella lapillus"~"Gastropod",
+Organism == "Nudibranchia"~"Gastropod",
+Organism == "Onchidoris"~"Gastropod",
+Organism == "Ophiopholis"~"Sea Star",
+Organism == "Ostrea edulis"~"Bivalve",
+Organism == "Pagurus acadianus"~"Crustacean",
+Organism == "Palmaria palmata"~"Erect Red Algae",
+Organism == "Petalonia fascia"~"Erect Brown Algae",
+Organism == "Phymatolithon lenormandii"~"Red Algal Crust",
+Organism == "Platyhelminthes"~"Worm",
+Organism == "Platyhelminthes"~"Worm",
+Organism == "Plumaria plumosa"~"Erect Red Algae",
+Organism == "Polychaeta"~"Worm",
+Organism == "Polysiphonia"~"Erect Red Algae",
+Organism == "Polysiphonia (canopy)"~"Erect Red Algae",
+Organism == "Polysiphonia (primary)"~"Erect Red Algae",
+Organism == "Porphyra"~"Erect Red Algae",
+Organism == "Prasiola stipitata"~"Green Algae",
+Organism == "Praunus"~"Crustacean",
+Organism == "Protectocarpus speciosus"~"Erect Brown Algae",
+Organism == "Pterothamnion plumula"~"Erect Red Algae",
+Organism == "Ptilota serrata"~"Erect Red Algae",
+Organism == "Pylaiella littoralis"~"Erect Brown Algae",
+Organism == "Ralfsia"~"Brown Algal Crust",
+Organism == "Rhizoclonium tortuosum"~"Green Algae",
+Organism == "Saccharina latissima"~"Erect Brown Algae",
+Organism == "Saccharina latissima (canopy)"~"Erect Brown Algae",
+Organism == "Saccharina latissima (primary)"~"Erect Brown Algae",
+Organism == "Saccorhiza dermatodea"~"Erect Brown Algae",
+Organism == "Schizoporella unicornis"~"Bryozoan",
+Organism == "Scytosiphon lomentaria"~"Erect Brown Algae",
+Organism == "Semibalanus balanoides"~"Crustacean",
+Organism == "Sertularia"~"Hydrozoan",
+Organism == "Skeneopsis planorbis"~"Gastropod",
+Organism == "Spermothamnion repens"~"Erect Red Algae",
+Organism == "Sphacelaria"~"Erect Brown Algae",
+Organism == "Sphacelaria cirrosa"~"Erect Brown Algae",
+Organism == "Spirorbis"~"Worm",
+Organism == "Spongomorpha aeruginosa"~"Green Algae",
+Organism == "Strongylocentrotus droebachiensis"~"Urchin",
+Organism == "Testudinalia testudinalis"~"Gastropod",
+Organism == "Thelepus cincinnatus"~"Worm",
+Organism == "Tricellaria"~"Bryozoan",
+Organism == "Ulva intestinalis"~"Green Algae",
+Organism == "Ulva lactuca"~"Green Algae",
+Organism == "Verrucaria"~"Fungi",
+Organism == "Vertebrata lanosa"~"Erect Red Algae"))
+
+pc_1986 <- pc_agg %>%
+  filter(!is.na(Percent_cover)) %>%
+  filter(Level<=13 & Level>=0) %>% 
+  filter(between(Year, 1986, 2006))
+
+pc_2009 <- pc_agg %>%
+  filter(!is.na(Percent_cover)) %>%
+  filter(Level<=13 & Level>=0) %>% 
+  filter(between(Year, 2009, 2018))
+
+pc_full=full_join(pc_1986, pc_2009)
+
+pc_full$Transect<-factor(pc_full$Transect)
+pc_full$Percent_cover<-as.numeric(as.character(pc_full$Percent_cover)) #text turned to NAs
+pc_full$Organism<-factor(pc_full$Organism)
+```
+
+```{r}
+
+#first sum up groups w/in plot
+#then average across transect and exposure
+
+group_type <- pc_full %>%
+  group_by(Year, Transect, Level, Replicate, Exposure, type) %>%
+  summarise(
+    pc=sum(Percent_cover))
+
+group_avg_type <- . %>%
+  group_by(Year, Transect, Exposure) %>%
+  summarize(pc = mean(pc, na.rm=T)) %>%
+  ungroup()
+
+
+algae <- group_type %>%
+  filter(type == "Algae") %>%
+  group_avg_type
+
+inverts <-  group_type %>%
+  filter(type == "Invertebrate") %>%
+  group_avg_type
+
+
+group_subtype <- pc_full %>%
+  group_by(Year, Transect, Level, Replicate, Exposure, subtype) %>%
+  summarise(
+    pc=sum(Percent_cover))
+
+group_avg_subtype <- . %>%
+  group_by(Year, Transect, Exposure) %>%
+  summarize(pc = mean(pc, na.rm=T)) %>%
+  ungroup()
+
+reds <- group_subtype %>%
+  filter(subtype == "Erect Red Algae") %>%
+  group_avg_subtype 
+
+browns <- group_subtype %>%
+  filter(subtype == "Erect Brown Algae") %>%
+  group_avg_subtype 
+
+greens <- group_subtype %>%
+  filter(subtype == "Green Algae") %>%
+  group_avg_subtype
+
+red_crusts <- group_subtype %>%
+  filter(subtype == "Red Algal Crust") %>%
+  group_avg_subtype
+
+brown_crusts <- group_subtype %>%
+  filter(subtype == "Brown Algal Crust") %>%
+  group_avg_subtype
+
+cyan <- group_subtype %>%
+  filter(subtype == "Cyanobacteria") %>%
+  group_avg_subtype
+
+bryo <- group_subtype %>%
+  filter(subtype == "Bryozoan") %>%
+  group_avg_subtype 
+
+squirts <- group_subtype %>%
+  filter(subtype == "Tunicate") %>%
+  group_avg_subtype 
+
+crustaceans <- group_subtype %>%
+  filter(subtype == "Crustacean") %>%
+  group_avg_subtype
+
+bivalves <- group_subtype %>%
+  filter(subtype == "Bivalve") %>%
+  group_avg_subtype
+```
+
+# Let's Plot Trends
+Here are some functions we'll apply to each species. I'll then fit mixed models with all of them using   
+
+<center>COUNT ~ YEAR * EXPOSURE + (1|TRANSECT)</center>
+
+with a gaussian error. Note, it's cover, so, I could use Beta, but, that needs to be way more tuned to each model given that we have > 100% cover for some things - this should be fine for a first cut?
+
+Here's how we'll do it:
+
+```{r, echo = TRUE}
+tseries_plot <- function(adf){
+  
+  ggplot(adf,
+         aes(y = pc, x = Year,
+             color = Transect)) +
+    geom_point() +
+    geom_line() +
+    facet_wrap(~Exposure, nrow = 1) +
+    labs(color = "Transect", 
+         y = "Percent Cover",  x = "Year")
+}
+
+tseries_fun <- function(adf){
+  lmer(pc ~ Year * Exposure + (1|Transect),
+               data = adf)
+  
+}
+
+generate_output <- function(adf){
+ # cat(paste0("## ", adf$SP_CODE[1], " ", adf$SPECIES[1], "  \n<br>"))
+    cat("\n\n")
+
+  tseries_plot(adf) %>% print()
+
+  if(sum(adf$pc>3) > 2){
+  tseries_fun(adf) %>%
+    car::Anova(test.statistic  = "Chisq") %>%
+    tidy() %>%
+    knitr::kable(digits = 3) %>%
+ #   kableExtra::kable_styling() %>%
+   print
+  }
+  
+}
+```
+
+
+## All Algae Percent Cover
+```{r}
+generate_output(algae)
+```
+
+## All Reds Percent Cover
+```{r}
+generate_output(reds)
+```
+
+## All Browns Percent Cover
+```{r}
+generate_output(browns)
+```
+
+## All Greens Percent Cover
+```{r}
+generate_output(greens)
+```
+
+
+## Red Crusts Percent Cover
+```{r}
+generate_output(red_crusts)
+```
+
+
+## Brown Crusts Percent Cover
+```{r}
+generate_output(brown_crusts)
+```
+
+
+## Cyanobacteria Percent Cover
+```{r}
+generate_output(cyan)
+```
+
+
+## All Inverts Percent Cover
+```{r}
+generate_output(inverts)
+```
+
+## All Bryozoans Percent Cover
+```{r}
+generate_output(bryo)
+```
+
+
+## All Tunicates Percent Cover
+```{r}
+generate_output(squirts)
+```
+
+
+## All Crustaceans Percent Cover
+```{r}
+generate_output(crustaceans)
+```
+
+
+## All Bivalves Percent Cover
+```{r}
+generate_output(bivalves)
+```
+
