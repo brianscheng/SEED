@@ -7,7 +7,7 @@ For full details on source and how annual means were calculated see 'env_data_so
 Quick links to data sources:
 SST https://www.ncdc.noaa.gov/oisst/optimum-interpolation-sea-surface-temperature-oisst-v20
 AirT https://www.ndbc.noaa.gov/station_page.php?station=iosn3
-Waves (tba)
+Waves https://www.ndbc.noaa.gov/station_page.php?station=44030
 Snow https://www.ncdc.noaa.gov/cdo-web/datasets/GHCND/stations/GHCND:USC00273626/detail
 Precipation https://www.ncdc.noaa.gov/cdo-web/datasets/GHCND/stations/GHCND:USC00273626/detail
 Chlorophyll https://neo.sci.gsfc.nasa.gov/view.php?datasetId=MY1DMM_CHLORA&year=2019
