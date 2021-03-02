@@ -1,0 +1,21 @@
+README Environmental Data
+
+Data in this folder are from many sources. Attempts have been made to gather data from as close to Appledore as possible
+
+For full details on source and how annual means were calculated see 'env_data_source.xlsx' file
+
+Quick links to data sources:
+SST https://www.ncdc.noaa.gov/oisst/optimum-interpolation-sea-surface-temperature-oisst-v20
+AirT https://www.ndbc.noaa.gov/station_page.php?station=iosn3
+Waves (tba)
+Snow https://www.ncdc.noaa.gov/cdo-web/datasets/GHCND/stations/GHCND:USC00273626/detail
+Precipation https://www.ncdc.noaa.gov/cdo-web/datasets/GHCND/stations/GHCND:USC00273626/detail
+Chlorophyll https://neo.sci.gsfc.nasa.gov/view.php?datasetId=MY1DMM_CHLORA&year=2019
+Global pH https://www.eea.europa.eu/data-and-maps/indicators/ocean-acidification-3/assessment
+NAO https://www.cpc.ncep.noaa.gov/products/precip/CWlink/pna/nao.shtml
+
+
+R Library for Heatwave Analysis:
+http://search.r-project.org/library/heatwaveR/html/block_average.html
+
+
