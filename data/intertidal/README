@@ -1,0 +1,53 @@
+Contains all files from Shoals Marine Lab Intertidal Long-Term Monitoring 
+https://portal.edirepository.org/nis/mapbrowse?packageid=edi.236.1
+
+02.March.2021 Update to folder
+Files with '_v2' contain last 3 survey years (1982-2020); other files end with 2017 survey
+Files with '_clean' have been passed through cleaning script
+
+...
+
+SML protocol, data issues and acknowledgements:
+sml_rocky_intertidal_protocol_2018.pdf
+sml_rocky_intertidal_data_quality.pdf (this has information regarding columns and data entries)
+sml_rocky_intertidal_acknowledgements.pdf
+
+Columns Common to all data files:
+Year - year of survey
+Transect - permanent transect ID
+Level - tide level surveyed (note this is relative position on shore, NOT in feet or meters)
+Replicate - replicate quadrat ID
+Data_taken - inidicates whether observation was made (yes) or not (no)
+Organism - species name
+Exposure - sheltered or protected side of the island
+
+
+
+Data Files:
+
+Species Metadata:
+species_list.csv
+species_list_aggregate.csv (added type and subtype to match broad level taxa groups in KEEN)
+
+Transect Metadata:
+transect_info.csv
+
+Replicate (Quadrat) - Level Notes:
+notes.csv
+
+Percent Cover data of sessile:
+percent_cover_data.csv
+
+Counts of Mobile organisms:
+counts_data.csv
+
+Categories data for low cover spp
+categories_data.csv (spp in this file should be included in percent cover file with nominal cover)
+
+Size Data for barnacles and mussels
+sizes_data.csv
+
+Size data for Fucus & Ascophyllum:
+fucus_asco_max_size.csv
+
+
