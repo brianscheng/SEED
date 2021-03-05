@@ -10,16 +10,16 @@ library('tidyverse')
 setwd("C:/Users/kylla/Documents/Research/R Projects/SEED")
 
 # Load Data---------------------
-pc_data = read.csv("percent_cover_data_v2.csv", header=TRUE, 
+pc_data = read.csv("data/intertidal/percent_cover_data_v2.csv", header=TRUE, 
                    na.strings = c("NA"))
 
-ct_data = read.csv("counts_data_v2.csv", header=TRUE, 
+ct_data = read.csv("data/intertidal/counts_data_v2.csv", header=TRUE, 
                    na.strings = c("NA"))
 
-sizes_data = read.csv("sizes_data_v2.csv", header=TRUE, 
+sizes_data = read.csv("data/intertidal/sizes_data_v2.csv", header=TRUE, 
                    na.strings = c("NA"))
 
-sw_sizes_data = read.csv("fucus_asco_max_size.csv", header=TRUE, 
+sw_sizes_data = read.csv("data/intertidal/fucus_asco_max_size.csv", header=TRUE, 
                       na.strings = c("NA"))
 
 # Data Clean Up ------------------
@@ -59,12 +59,15 @@ pc_filtered = pc_data %>%
   filter(Percent_cover != "6stipes") %>%
   mutate(Percent_cover = replace(Percent_cover, Percent_cover == "70 phymato", 70)) %>%
   filter(Percent_cover != "if a species is not listed to the left, please put it in the notes column. Thanks!") %>%
-  mutate(Percent_cover = replace(Percent_cover, Percent_cover == "upper 15.6%/substrate 1.2%", 15.6))
+  mutate(Percent_cover = replace(Percent_cover, Percent_cover == "upper 15.6%/substrate 1.2%", 15.6)) %>%
+  mutate(Organism = replace(Organism, Organism == "Botryllus violaceus", "Botrylloides violaceus")) %>%
+  mutate(Organism = replace(Organism, Organism == "Tectura testudinalis", "Testudinalia testudinalis"))
 
 unique(pc_filtered$Percent_cover) #check for any missed
 pc_filtered["Percent_cover"]<- as.numeric(pc_filtered[,"Percent_cover"]) #change to numeric variable
 is.numeric(pc_filtered$Percent_cover)
 
+write.csv(pc_filtered, "data/intertidal/pc_clean.csv", row.names=FALSE)
 
 #### COUNTS
 
@@ -73,16 +76,23 @@ is.numeric(pc_filtered$Percent_cover)
 # also filtering out rows with errant notes in Count column
 
 unique(ct_data$Count) #view unique entries to find rows to filter out or replace
+unique(ct_data$Organism)
 
 ct_filtered = ct_data %>%
   filter(Count != "p") %>%
   filter(Count != "nd") %>%
   filter(Count != "casings present") %>%
-  filter(Count != "sp100")
+  filter(Count != "sp100") %>%
+  mutate(Organism = replace(Organism, Organism == "Botryllus violaceus", "Botrylloides violaceus")) %>%
+  mutate(Organism = replace(Organism, Organism == "Tectura testudinalis", "Testudinalia testudinalis"))
+
+
 
 unique(ct_filtered$Count) #check for any missed
 ct_filtered["Count"]<- as.numeric(ct_filtered[,"Count"]) #change to numeric variable
 is.numeric(ct_filtered$Count)
+
+write.csv(ct_filtered, "data/intertidal/ct_clean.csv", row.names=FALSE)
 
 
 #### INVERT SIZES
@@ -92,6 +102,7 @@ is.numeric(ct_filtered$Count)
 # also filtering out rows with errant notes in Count column
 
 unique(sizes_data$Count)
+unique(sizes_data$Organism)
 
 sz_filtered = sizes_data %>%
   filter(Count != "p") %>%
@@ -114,6 +125,8 @@ sz_filtered = sz_filtered %>%
 
 unique(sz_filtered$Size_class)
 
+write.csv(sz_filtered, "data/intertidal/sz_clean.csv", row.names=FALSE)
+
 
 #### FUCUS & ASCOPHYLUM SIZES
 
@@ -128,6 +141,7 @@ unique(sz_filtered$Size_class)
 unique(sw_sizes_data$Asco_maxbladders)
 unique(sw_sizes_data$Fucus_maxlength)
 unique(sw_sizes_data$Asco_maxlength)
+unique(sw_sizes_data$Fucus_max_species)
 
 sw_filtered = sw_sizes_data %>%
   filter(Asco_maxbladders != "p") %>%
@@ -142,12 +156,36 @@ sw_filtered = sw_sizes_data %>%
   filter(Asco_maxlength != "p") %>%
   filter(Asco_maxlength != "nd") %>%
   filter(Asco_maxlength != "51?") %>%
-  mutate(Asco_maxlength = replace(Asco_maxlength, Asco_maxlength == "120mm", 120))
+  mutate(Asco_maxlength = replace(Asco_maxlength, Asco_maxlength == "120mm", 120)) %>%
+  mutate(Fucus_maxlength = replace(Fucus_maxlength, Fucus_maxlength == "nd - distichus or vesiculosis", "Fucus spp.")) %>%
+  mutate(Fucus_maxlength = replace(Fucus_maxlength, Fucus_maxlength == "nd - spiralis or sp", "Fucus spp.")) %>%
+  mutate(Fucus_maxlength = replace(Fucus_maxlength, Fucus_maxlength == "sp. & distichus", "Fucus spp.")) %>%
+  mutate(Fucus_maxlength = replace(Fucus_maxlength, Fucus_maxlength == "spiralis & distichus", "Fucus spp.")) %>%
+  mutate(Fucus_maxlength = replace(Fucus_maxlength, Fucus_maxlength == "nd - sp.or vesiculosis", "Fucus spp.")) %>%
+  mutate(Fucus_maxlength = replace(Fucus_maxlength, Fucus_maxlength == "nd - spiralis or vesiculosis", "Fucus spp.")) %>%
+  mutate(Fucus_maxlength = replace(Fucus_maxlength, Fucus_maxlength == "nd-sp., vesiculosis, or spiralis", "Fucus spp.")) %>%
+  mutate(Fucus_maxlength = replace(Fucus_maxlength, Fucus_maxlength == "spir/dist", "Fucus spp.")) %>%
+  mutate(Fucus_maxlength = replace(Fucus_maxlength, Fucus_maxlength == "spir/sp.?", "Fucus spp.")) %>%
+  mutate(Fucus_maxlength = replace(Fucus_maxlength, Fucus_maxlength == "spiralis & distichus", "Fucus spp.")) %>%
+  mutate(Fucus_maxlength = replace(Fucus_maxlength, Fucus_maxlength == "unknown, probably vesiculosis", "Fucus spp.")) %>%
+  mutate(Fucus_maxlength = replace(Fucus_maxlength, Fucus_maxlength == "ves./dist.", "Fucus spp.")) %>%
+  mutate(Fucus_maxlength = replace(Fucus_maxlength, Fucus_maxlength == "ves/sp.", "Fucus spp.")) %>%
+  mutate(Fucus_maxlength = replace(Fucus_maxlength, Fucus_maxlength == "ves/spir", "Fucus spp.")) %>%
+  mutate(Fucus_maxlength = replace(Fucus_maxlength, Fucus_maxlength == "vesic, spir", "Fucus spp."))
+
 
 unique(sw_filtered$Asco_maxbladders)
 unique(sw_filtered$Fucus_maxlength)
 unique(sw_filtered$Asco_maxlength)
 
+sw_filtered["Asco_maxbladders"]<- as.numeric(sw_filtered[,"Asco_maxbladders"]) #change to numeric variable
+sw_filtered["Fucus_maxlength"]<- as.numeric(sw_filtered[,"Fucus_maxlength"]) #change to numeric variable
+sw_filtered["Asco_maxlength"]<- as.numeric(sw_filtered[,"Asco_maxlength"]) #change to numeric variable
 
+is.numeric(sw_filtered$Asco_maxbladders)
+is.numeric(sw_filtered$Fucus_maxlength)
+is.numeric(sw_filtered$Asco_maxbladders)
+
+write.csv(sw_filtered, "data/intertidal/sw_sz_clean.csv", row.names=FALSE)
 
  
